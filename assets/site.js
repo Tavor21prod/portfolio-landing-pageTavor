@@ -21,7 +21,7 @@
   var full = site.fullName || name;
   var surname = full.indexOf(name) === 0 ? full.slice(name.length).trim() : '';
   var roles = (site.roles || []).join(' & ');
-  var binds = { name: name, surname: surname, roles: roles, location: site.location, years: site.years, fullName: full };
+  var binds = { name: name, surname: surname, roles: roles, lede: site.lede || roles, tagline: site.tagline || '', location: site.location, years: site.years, fullName: full };
 
   document.title = full + (roles ? ' — ' + roles : '');
   document.querySelectorAll('[data-bind]').forEach(function (el) { el.textContent = binds[el.getAttribute('data-bind')] || ''; });

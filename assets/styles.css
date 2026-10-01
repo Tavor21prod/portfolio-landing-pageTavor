@@ -37,7 +37,7 @@ a:focus-visible{outline:1px solid var(--red);outline-offset:6px}
 .s-d{left:58%;top:62%;width:10%;aspect-ratio:1/1;z-index:3;animation-delay:.9s}
 .s-e{left:90.5%;top:63%;width:6.5%;aspect-ratio:1/2.4;animation-delay:1.05s}
 .name{position:absolute;left:3%;bottom:40px;margin:0;z-index:2;display:flex;flex-wrap:nowrap;font-family:var(--serif);font-weight:400;font-size:24vw;line-height:.8;letter-spacing:-.02em;color:#f3efe6;mix-blend-mode:difference;pointer-events:none;font-variation-settings:'opsz' 96}
-.glyph{display:block;animation:reveal 1.8s var(--ease) both}
+.glyph{display:block;opacity:.8;animation:reveal 1.8s var(--ease) both}
 .g0{transform:translateY(-.1em);animation-delay:.1s}
 .g1{transform:translateY(0);animation-delay:.22s}
 .g2{transform:translateY(-.56em);font-style:italic;animation-delay:.34s}
@@ -48,7 +48,7 @@ a:focus-visible{outline:1px solid var(--red);outline-offset:6px}
 .g7{transform:translateY(-.16em);animation-delay:.94s}
 .intro{position:absolute;left:6%;top:21%;width:19%;z-index:4;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
 .lede{margin:0;font-family:var(--serif);font-size:clamp(20px,1.8vw,30px);line-height:1.12;text-wrap:balance}
-.loc{margin:0;color:var(--mute)}
+.tagline{position:absolute;left:50%;top:11%;transform:translateX(-50%);margin:0;z-index:4;white-space:nowrap;color:var(--mute)}
 .reel{display:inline-flex;align-items:center;gap:10px;min-height:44px}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none;animation:blink 2.4s steps(1) infinite}
 .side{position:absolute;right:2.2%;top:16%;margin:0;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--mute)}
@@ -125,6 +125,7 @@ a:focus-visible{outline:1px solid var(--red);outline-offset:6px}
 .hero{height:820px;min-height:0}
 .intro{left:5%;top:11%;width:62%;gap:12px}
 .lede{font-size:22px}
+.tagline{top:25%}
 .side{display:none}
 .still .cap{display:none}
 .s-a .cap{display:block;opacity:1}

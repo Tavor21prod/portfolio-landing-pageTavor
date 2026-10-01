@@ -17,6 +17,8 @@ window.SITE = {
       "Editor"
     ],
     "location": "[City]",
+    "lede": "video & stills creator",
+    "tagline": "FOR EVERY FIELD",
     "years": "2022 — 2026",
     "email": "hello@[yourdomain].com",
     "reelUrl": "https://vimeo.com/[your-showreel-id]",
