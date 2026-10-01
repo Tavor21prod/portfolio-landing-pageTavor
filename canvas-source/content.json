@@ -1,0 +1,120 @@
+{
+  "_howto": "All site content lives in this file. Replace images with your own uploads (the /_blob/... url an upload returns), and edit text freely. Projects appear in the order listed; the editorial grid repeats a 6-slot pattern, so any number of projects works. hero[].project points at a project slug; hero[].slot (a–e) is its place in the landing collage.",
+
+  "site": {
+    "name": "Tavor",
+    "fullName": "Tavor [Surname]",
+    "roles": ["Director of Photography", "Editor"],
+    "location": "[City]",
+    "years": "2022 — 2026",
+    "email": "hello@[yourdomain].com",
+    "reelUrl": "https://vimeo.com/[your-showreel-id]",
+    "statement": [
+      { "text": "Light first, then rhythm. I shoot and edit " },
+      { "text": "films that hold a breath", "italic": true },
+      { "text": " a little longer than expected." }
+    ],
+    "social": [
+      { "label": "Instagram", "url": "https://instagram.com/[handle]" },
+      { "label": "Vimeo", "url": "https://vimeo.com/[handle]" },
+      { "label": "IMDb", "url": "https://imdb.com/name/[id]" }
+    ]
+  },
+
+  "hero": [
+    { "slot": "a", "project": "interior-day", "image": "/_blob/9134c20d47d4c667c4523310dbd2b515", "alt": "Silhouette of a figure against a window with blinds, hard light on the floor" },
+    { "slot": "b", "project": "salt-hour", "image": "/_blob/363e2dd0699d322154040586f3487395", "alt": "Low sun on a dark sea horizon" },
+    { "slot": "c", "project": "night-drive", "image": "/_blob/e427f04ea342570b5b33c1783663a782", "alt": "Red tail-light streaks and out-of-focus headlights at night" },
+    { "slot": "d", "project": "the-long-field", "image": "/_blob/56997705e43658b9e0be27f213f7e68e", "alt": "Smoke lit from the side against black" },
+    { "slot": "e", "project": "the-long-field", "image": "/_blob/53d3793227b507c6ef6b0f3ded142d77", "alt": "A shaft of light across a concrete stairwell" }
+  ],
+
+  "projects": [
+    {
+      "slug": "the-long-field",
+      "title": "The Long Field",
+      "client": "[Client]",
+      "role": "Director of Photography",
+      "year": "2026",
+      "cover": "/_blob/4db83abf4dafb893222fc0494692fe3b",
+      "coverAlt": "Aerial view of dunes in raking amber light",
+      "video": "https://vimeo.com/[video-id]",
+      "summary": "[Two or three sentences on the brief, the visual approach and what you shot it on.]",
+      "stills": [
+        { "image": "/_blob/4db83abf4dafb893222fc0494692fe3b", "alt": "Dunes in raking light" },
+        { "image": "/_blob/56997705e43658b9e0be27f213f7e68e", "alt": "Side-lit smoke" },
+        { "image": "/_blob/53d3793227b507c6ef6b0f3ded142d77", "alt": "Light shaft in a stairwell" }
+      ]
+    },
+    {
+      "slug": "quiet-weather",
+      "title": "Quiet Weather",
+      "client": "[Client]",
+      "role": "Cinematography & Edit",
+      "year": "2025",
+      "cover": "/_blob/512686748622bcda8e38384361082d4e",
+      "coverAlt": "Tree trunks fading into fog",
+      "video": "https://vimeo.com/[video-id]",
+      "summary": "[Two or three sentences on the brief, the visual approach and what you shot it on.]",
+      "stills": [
+        { "image": "/_blob/512686748622bcda8e38384361082d4e", "alt": "Forest in fog" }
+      ]
+    },
+    {
+      "slug": "salt-hour",
+      "title": "Salt Hour",
+      "client": "[Client]",
+      "role": "Director of Photography",
+      "year": "2025",
+      "cover": "/_blob/363e2dd0699d322154040586f3487395",
+      "coverAlt": "Low sun on a dark sea horizon",
+      "video": "https://vimeo.com/[video-id]",
+      "summary": "[Two or three sentences on the brief, the visual approach and what you shot it on.]",
+      "stills": [
+        { "image": "/_blob/363e2dd0699d322154040586f3487395", "alt": "Sun on the horizon" }
+      ]
+    },
+    {
+      "slug": "night-drive",
+      "title": "Night Drive",
+      "client": "[Client]",
+      "role": "Editor",
+      "year": "2024",
+      "cover": "/_blob/e427f04ea342570b5b33c1783663a782",
+      "coverAlt": "Red tail-light streaks at night",
+      "video": "https://vimeo.com/[video-id]",
+      "summary": "[Two or three sentences on the brief, the visual approach and what you shot it on.]",
+      "stills": [
+        { "image": "/_blob/e427f04ea342570b5b33c1783663a782", "alt": "Night road" }
+      ]
+    },
+    {
+      "slug": "night-swimmers",
+      "title": "Night Swimmers",
+      "client": "[Client]",
+      "role": "Director of Photography",
+      "year": "2024",
+      "cover": "/_blob/b4af305230815c5ce203ad14a60c34ff",
+      "coverAlt": "Overhead view of a swimmer's shadow over pool caustics",
+      "video": "https://vimeo.com/[video-id]",
+      "summary": "[Two or three sentences on the brief, the visual approach and what you shot it on.]",
+      "stills": [
+        { "image": "/_blob/b4af305230815c5ce203ad14a60c34ff", "alt": "Pool caustics" }
+      ]
+    },
+    {
+      "slug": "interior-day",
+      "title": "Interior, Day",
+      "client": "[Client]",
+      "role": "Cinematography & Edit",
+      "year": "2023",
+      "cover": "/_blob/9134c20d47d4c667c4523310dbd2b515",
+      "coverAlt": "Silhouette of a figure against a window with blinds",
+      "video": "https://vimeo.com/[video-id]",
+      "summary": "[Two or three sentences on the brief, the visual approach and what you shot it on.]",
+      "stills": [
+        { "image": "/_blob/9134c20d47d4c667c4523310dbd2b515", "alt": "Figure at a window" }
+      ]
+    }
+  ]
+}

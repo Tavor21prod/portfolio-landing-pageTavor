@@ -1,0 +1,15 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-01T15:45:18Z"},
+  "title": "Tavor — Portfolio",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "System.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 4600, "title": "01 Visual system"},
+    "Main.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 5000, "title": "02 Home — desktop", "expand": "fill", "is_interactive": true},
+    "MainPhone.dc.html": {"x": 3040, "y": 0, "w": 390, "h": 4500, "title": "03 Home — phone", "is_interactive": true}
+  },
+  "order": ["System.dc.html", "Main.dc.html", "MainPhone.dc.html"],
+  "notes": {},
+  "designSystems": []
+}

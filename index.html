@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="content.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<div class="site" style="position: relative; min-height: 100vh; background: #0a0a0a; color: #f3efe6; font-family: 'Instrument Sans', 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.55; overflow-x: hidden">
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+<a class="brand" href="#top"><span data-bind="name"></span> <em data-bind="surname"></em></a>
+<p class="nav-mid mono" data-bind="roles"></p>
+<nav class="nav-links mono" aria-label="Primary">
+<a class="u" href="#work"><span class="idx">01</span>Work</a>
+<a class="u" href="#about"><span class="idx">02</span>About</a>
+<a class="u" href="#contact"><span class="idx">03</span>Contact</a>
+</nav>
+</header>
+
+<main>
+<section id="top" class="hero" aria-label="Introduction">
+<div id="hero-stills"></div>
+<h1 class="name" id="hero-name"></h1>
+<div class="intro">
+<p class="lede" data-bind="roles"></p>
+<p class="loc mono">Based in <span data-bind="location"></span></p>
+<a class="reel mono" id="reel" href="#"><span class="dot" aria-hidden="true"></span><span class="u">Play showreel</span></a>
+</div>
+<p class="side mono">Selected work <span data-bind="years"></span></p>
+<a class="cue mono" href="#work">Scroll ↓</a>
+</section>
+
+<section class="statement" aria-label="Statement">
+<p class="label mono">(Statement)</p>
+<p class="statement-text" id="statement"></p>
+</section>
+
+<section id="work" class="work" aria-labelledby="work-title">
+<div class="work-head">
+<h2 id="work-title" class="work-title"><span data-bind="name"></span><span class="count mono" id="count"></span></h2>
+<div class="work-aside mono">
+<span data-bind="years"></span>
+<a class="u" href="#work">Full index →</a>
+</div>
+</div>
+<div class="grid" id="grid"></div>
+</section>
+</main>
+
+<footer id="contact" class="contact">
+<p id="about" class="label mono">(Contact)</p>
+<a class="mail u" id="mail" href="#"></a>
+<nav class="social mono" id="social" aria-label="Elsewhere"></nav>
+<div class="colophon mono">
+<span>© <span id="year"></span> <span data-bind="fullName"></span></span>
+<a class="u" href="#top">Back to top ↑</a>
+</div>
+<div class="endcard" aria-hidden="true" data-bind="name"></div>
+</footer>
+</div>
+</body>
+</html>
