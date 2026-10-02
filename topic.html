@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topic</title>
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="content.js" defer></script>
+<script src="assets/topic.js" defer></script>
+</head>
+<body>
+<div class="site" style="position: relative; min-height: 100vh; background: #0a0a0a; color: #f3efe6; font-family: 'Instrument Sans', 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.55; overflow-x: hidden">
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+<a class="brand" href="index.html"><span data-bind="name"></span> <em data-bind="brandSuffix"></em></a>
+<p class="nav-mid mono" data-bind="roles"></p>
+<nav class="nav-links mono" aria-label="Primary">
+<a class="u" href="index.html#work"><span class="idx">01</span>Work</a>
+<a class="u" href="index.html#about"><span class="idx">02</span>About</a>
+<a class="u" href="index.html#contact"><span class="idx">03</span>Contact</a>
+</nav>
+</header>
+
+<main>
+<section class="topic-head" aria-labelledby="topic-title">
+<p class="label mono" id="topic-label"></p>
+<h1 class="topic-title" id="topic-title"></h1>
+<p class="topic-blurb" id="topic-blurb"></p>
+</section>
+<section class="topic-grid" id="topic-grid" aria-label="Pictures in this topic"></section>
+</main>
+
+<footer class="topic-foot">
+<a class="mono u" href="index.html">← Back to home</a>
+<a class="topic-next" id="topic-next" href="index.html"></a>
+</footer>
+</div>
+</body>
+</html>

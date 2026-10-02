@@ -17,6 +17,7 @@ window.SITE = {
       "Editor"
     ],
     "location": "[City]",
+    "brandSuffix": "Production",
     "lede": "video & stills creator",
     "tagline": "FOR EVERY FIELD",
     "years": "2022 — 2026",
@@ -49,36 +50,79 @@ window.SITE = {
       }
     ]
   },
+  "topics": [
+    {
+      "slug": "interiors",
+      "title": "Interiors",
+      "blurb": "[One or two lines about this topic.]",
+      "items": [
+        { "image": "images/window.jpg", "alt": "Figure against a window with blinds", "caption": "[Caption]" },
+        { "image": "images/stairs.jpg", "alt": "Light shaft in a stairwell", "caption": "[Caption]" }
+      ]
+    },
+    {
+      "slug": "horizon",
+      "title": "Sea & Horizon",
+      "blurb": "[One or two lines about this topic.]",
+      "items": [
+        { "image": "images/horizon.jpg", "alt": "Low sun on a dark sea horizon", "caption": "[Caption]" },
+        { "image": "images/dunes.jpg", "alt": "Dunes in raking amber light", "caption": "[Caption]" },
+        { "image": "images/fog.jpg", "alt": "Tree trunks fading into fog", "caption": "[Caption]" }
+      ]
+    },
+    {
+      "slug": "night",
+      "title": "Night",
+      "blurb": "[One or two lines about this topic.]",
+      "items": [
+        { "image": "images/road.jpg", "alt": "Red tail-light streaks at night", "caption": "[Caption]" },
+        { "image": "images/pool.jpg", "alt": "Swimmer's shadow over pool caustics", "caption": "[Caption]" }
+      ]
+    },
+    {
+      "slug": "texture",
+      "title": "Smoke & Texture",
+      "blurb": "[One or two lines about this topic.]",
+      "items": [
+        { "image": "images/smoke.jpg", "alt": "Side-lit smoke against black", "caption": "[Caption]" },
+        { "image": "images/fog.jpg", "alt": "Fog between tree trunks", "caption": "[Caption]" },
+        { "image": "images/dunes.jpg", "alt": "Sand ridges in raking light", "caption": "[Caption]" }
+      ]
+    },
+    {
+      "slug": "structure",
+      "title": "Light & Structure",
+      "blurb": "[One or two lines about this topic.]",
+      "items": [
+        { "image": "images/stairs.jpg", "alt": "Light across a concrete stairwell", "caption": "[Caption]" },
+        { "image": "images/window.jpg", "alt": "Window blinds with hard light", "caption": "[Caption]" }
+      ]
+    }
+  ],
   "hero": [
     {
       "slot": "a",
-      "project": "interior-day",
+      "topic": "interiors",
       "image": "images/window.jpg",
       "alt": "Silhouette of a figure against a window with blinds, hard light on the floor"
     },
     {
       "slot": "b",
-      "project": "salt-hour",
+      "topic": "horizon",
       "image": "images/horizon.jpg",
       "alt": "Low sun on a dark sea horizon"
     },
     {
       "slot": "c",
-      "project": "night-drive",
+      "topic": "night",
       "image": "images/road.jpg",
       "alt": "Red tail-light streaks and out-of-focus headlights at night"
     },
     {
       "slot": "d",
-      "project": "the-long-field",
+      "topic": "texture",
       "image": "images/smoke.jpg",
       "alt": "Smoke lit from the side against black"
-    },
-    {
-      "slot": "e",
-      "project": "the-long-field",
-      "image": "images/stairs.jpg",
-      "alt": "A shaft of light across a concrete stairwell"
     }
   ],
   "projects": [
