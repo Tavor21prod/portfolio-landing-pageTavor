@@ -17,7 +17,7 @@
 <div class="grain" aria-hidden="true"></div>
 
 <header class="nav">
-<a class="brand" href="#top"><span data-bind="name"></span> <em data-bind="surname"></em></a>
+<a class="brand" href="#top"><span data-bind="name"></span> <em data-bind="brandSuffix"></em></a>
 <p class="nav-mid mono" data-bind="roles"></p>
 <nav class="nav-links mono" aria-label="Primary">
 <a class="u" href="#work"><span class="idx">01</span>Work</a>
@@ -31,10 +31,10 @@
 <div id="hero-stills"></div>
 <h1 class="name" id="hero-name"></h1>
 <div class="intro">
-<p class="lede" data-bind="roles"></p>
-<p class="loc mono">Based in <span data-bind="location"></span></p>
-<a class="reel mono" id="reel" href="#"><span class="dot" aria-hidden="true"></span><span class="u">Play showreel</span></a>
+<p class="lede" data-bind="lede"></p>
+<p class="tagline mono" data-bind="tagline"></p>
 </div>
+<a class="reel mono" id="reel" href="#"><span class="dot" aria-hidden="true"></span><span class="u">Play showreel</span></a>
 <p class="side mono">Selected work <span data-bind="years"></span></p>
 <a class="cue mono" href="#work">Scroll ↓</a>
 </section>

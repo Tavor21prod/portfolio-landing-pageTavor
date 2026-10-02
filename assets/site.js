@@ -14,6 +14,8 @@
   var site = S.site || {};
   var all = S.projects || [];
   var featured = all.filter(function (p) { return p.featured !== false; });
+  var topicBySlug = {};
+  (S.topics || []).forEach(function (t, i) { topicBySlug[t.slug] = Object.assign({ num: pad(i + 1) }, t); });
   var bySlug = {};
   all.forEach(function (p, i) { bySlug[p.slug] = Object.assign({ num: pad(i + 1) }, p); });
 
@@ -21,16 +23,16 @@
   var full = site.fullName || name;
   var surname = full.indexOf(name) === 0 ? full.slice(name.length).trim() : '';
   var roles = (site.roles || []).join(' & ');
-  var binds = { name: name, surname: surname, roles: roles, location: site.location, years: site.years, fullName: full };
+  var binds = { name: name, surname: surname, roles: roles, brandSuffix: site.brandSuffix || surname, lede: site.lede || roles, tagline: site.tagline || '', location: site.location, years: site.years, fullName: full };
 
   document.title = full + (roles ? ' — ' + roles : '');
   document.querySelectorAll('[data-bind]').forEach(function (el) { el.textContent = binds[el.getAttribute('data-bind')] || ''; });
 
   // Hero collage
   $('hero-stills').innerHTML = (S.hero || []).map(function (h) {
-    var p = bySlug[h.project];
-    var href = p ? (p.href || '#' + p.slug) : '#work';
-    var cap = p ? p.num + ' — ' + p.title : (h.caption || '');
+    var t = topicBySlug[h.topic];
+    var href = t ? 'topic.html?t=' + encodeURIComponent(t.slug) : '#work';
+    var cap = t ? t.num + ' — ' + t.title : (h.caption || '');
     return '<a class="still s-' + esc(h.slot) + '" href="' + esc(href) + '">' +
       '<span class="frame"><img src="' + esc(h.image) + '" alt="' + esc(h.alt) + '"></span>' +
       '<span class="cap mono">' + esc(cap) + '</span></a>';
