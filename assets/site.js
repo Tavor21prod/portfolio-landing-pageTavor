@@ -48,6 +48,19 @@
     return s.italic ? '<em>' + esc(s.text) + '</em>' : '<span>' + esc(s.text) + '</span>';
   }).join('');
 
+
+  // About
+  var ab = site.about || {};
+  $('about-photo').innerHTML = ab.photo
+    ? '<span class="frame"><img src="' + esc(ab.photo) + '" alt="' + esc(ab.photoAlt) + '" loading="lazy"></span>'
+    : '<span class="frame ph mono">' + esc(ab.photoCaption || '[Photo]') + '</span>';
+  $('about-title').textContent = ab.heading || '';
+  $('about-bio').innerHTML = (ab.bio || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+  $('about-meta').innerHTML = [ab.location ? 'Based in ' + esc(ab.location) : '', ab.available ? 'Available for<br>' + esc(ab.available) : ''].filter(Boolean).join('<br><br>');
+  var cta = $('about-cta');
+  cta.href = 'mailto:' + (site.email || '');
+  cta.textContent = (ab.cta || 'Say hello') + ' \u2192';
+
   // Work grid — 6-slot editorial pattern repeats for any number of projects
   $('count').textContent = '(' + pad(featured.length) + ')';
   $('grid').innerHTML = featured.map(function (p, i) {

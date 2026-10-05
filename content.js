@@ -49,7 +49,20 @@ window.SITE = {
         "label": "IMDb",
         "url": "https://imdb.com/name/[id]"
       }
-    ]
+    ],
+    "about": {
+      "photo": "",
+      "photoAlt": "Portrait of Tavor",
+      "photoCaption": "[Photo of you]",
+      "heading": "I'm Tavor",
+      "bio": [
+        "[Two or three sentences about you, in the first person: how you started and what pulls you to this work.]",
+        "[One sentence about how you like to work with people.]"
+      ],
+      "location": "[City]",
+      "available": "Music · Sport · Business · Art · Stills",
+      "cta": "Say hello"
+    }
   },
   "topics": [
     {
@@ -70,9 +83,9 @@ window.SITE = {
       ]
     },
     {
-      "slug": "short-form",
-      "title": "Short-form",
-      "blurb": "Vertical content made for Instagram and TikTok.",
+      "slug": "stills",
+      "title": "Stills",
+      "blurb": "Photography, portraits and still frames.",
       "items": [
         {
           "image": "images/horizon.jpg",
@@ -140,7 +153,7 @@ window.SITE = {
     },
     {
       "slot": "b",
-      "topic": "short-form",
+      "topic": "stills",
       "image": "images/horizon.jpg",
       "alt": "Low sun on a dark sea horizon"
     },
@@ -221,7 +234,7 @@ window.SITE = {
       "slug": "night-drive",
       "title": "Night Drive",
       "client": "[Client]",
-      "role": "Short-form",
+      "role": "Photography",
       "year": "2024",
       "cover": "images/road.jpg",
       "coverAlt": "Red tail-light streaks at night",
