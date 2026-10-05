@@ -40,12 +40,16 @@
   $('topic-blurb').textContent = t.blurb || '';
 
   // A video item opens on YouTube/Vimeo in a new tab. It shows a poster picture (item.image) or, if
-  // item.loop points to a short muted clip (.mp4/.webm), that clip on repeat. A plain item is just a picture.
+  // item.loop points to a short muted clip (.mp4/.webm), that clip: still showing the
+  // poster picture, playing on repeat only while the pointer is over it. fit:"contain" shows a clip whose
+  // shape differs from the tile (e.g. vertical) whole, with the poster's blurred sides filling the rest.
   var media = function (it, i) {
     var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i ? ' loading="lazy"' : '') + '>';
     if (!it.video) return pic;
     var inner = it.loop
-      ? '<video src="' + esc(it.loop) + '" poster="' + esc(it.image) + '" muted loop autoplay playsinline preload="metadata"></video>'
+      ? '<video src="' + esc(it.loop) + '" poster="' + esc(it.image) + '"' +
+        (it.fit === 'contain' ? ' class="contain" style="background:url(' + esc(it.image) + ') center/cover"' : '') +
+        ' muted loop playsinline preload="auto"></video>'
       : pic;
     return '<a class="vid" href="' + esc(it.video) + '" target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
       inner + '<span class="play" aria-hidden="true"></span></a>';
@@ -58,6 +62,23 @@
       (it.caption ? '<figcaption class="mono">' + esc(it.caption) + '</figcaption>' : '') +
       '</figure>';
   }).join('');
+
+  // Loop clips play while hovered or focused and rewind on leave. On touch screens, which can't hover,
+  // they play while they are mostly in view instead.
+  var play = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+  var stop = function (v) { v.pause(); v.currentTime = 0; };
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  var seen = !canHover && 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { e.isIntersecting ? play(e.target) : stop(e.target); });
+  }, { threshold: 0.6 }) : null;
+  document.querySelectorAll('.vid video').forEach(function (v) {
+    var a = v.parentNode;
+    a.addEventListener('mouseenter', function () { play(v); });
+    a.addEventListener('mouseleave', function () { stop(v); });
+    a.addEventListener('focus', function () { play(v); });
+    a.addEventListener('blur', function () { stop(v); });
+    if (seen) seen.observe(v);
+  });
 
   var n = $('topic-next');
   if (next && next.slug !== t.slug) {

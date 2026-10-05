@@ -74,37 +74,44 @@ window.SITE = {
           "video": "https://youtu.be/aEiDrja27mo",
           "image": "images/video/fate-long.jpg",
           "alt": "fate long video",
-          "caption": "fate long video"
+          "caption": "",
+          "loop": "videos/loops/fate-long.mp4"
         },
         {
           "video": "https://youtu.be/oWiOACcfdhA",
           "image": "images/video/fate-short-1.jpg",
           "alt": "fate short video 1",
-          "caption": "fate short video 1"
+          "caption": "",
+          "loop": "videos/loops/fate-short-1.mp4"
         },
         {
           "video": "https://youtu.be/KVNTKQilnI4",
           "image": "images/video/fate-short-2.jpg",
           "alt": "fate short video 2",
-          "caption": "fate short video 2"
+          "caption": "",
+          "loop": "videos/loops/fate-short-2.mp4"
         },
         {
           "video": "https://youtu.be/acs4HTNJxKw",
           "image": "images/video/mitahev-short-1.jpg",
           "alt": "מתאהב בבחורות הלא נכונות סרטון קצר 1",
-          "caption": "מתאהב בבחורות הלא נכונות סרטון קצר 1"
+          "caption": "",
+          "loop": "videos/loops/mitahev-short-1.mp4"
         },
         {
           "video": "https://youtu.be/wzqyhl7T_NM",
           "image": "images/video/img-2798.jpg",
           "alt": "IMG 2798",
-          "caption": "IMG 2798"
+          "caption": "",
+          "loop": "videos/loops/img-2798.mp4"
         },
         {
           "video": "https://youtube.com/shorts/4vLSqx32Lyo",
           "image": "images/video/video-5.jpg",
           "alt": "סרטון 5",
-          "caption": "סרטון 5"
+          "caption": "",
+          "loop": "videos/loops/video-5.mp4",
+          "fit": "contain"
         }
       ],
       "layout": "video"
@@ -180,13 +187,13 @@ window.SITE = {
           "video": "https://youtube.com/shorts/ZVTZdbid0Lg",
           "image": "images/video/zaza-rooftop.jpg",
           "alt": "זזה מטורף מגג לגג",
-          "caption": "זזה מטורף מגג לגג"
+          "caption": ""
         },
         {
           "video": "https://youtube.com/shorts/-03jDfgdvZo",
           "image": "images/video/zaza-woman.jpg",
           "alt": "זזה מטורף עם אישה",
-          "caption": "זזה מטורף עם אישה"
+          "caption": ""
         }
       ]
     }
@@ -195,8 +202,8 @@ window.SITE = {
     {
       "slot": "a",
       "topic": "music",
-      "image": "images/window.jpg",
-      "alt": "Silhouette of a figure against a window with blinds, hard light on the floor"
+      "image": "images/music-hero.jpg",
+      "alt": "High-contrast black and white frame of a rapper with a blurred figure behind him"
     },
     {
       "slot": "b",
