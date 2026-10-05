@@ -71,16 +71,43 @@ window.SITE = {
       "blurb": "Visuals, live sessions and short promo clips for artists.",
       "items": [
         {
-          "image": "images/road.jpg",
-          "alt": "Red tail-light streaks at night",
-          "caption": "[Project name]"
+          "video": "https://youtu.be/aEiDrja27mo",
+          "image": "images/video/fate-long.jpg",
+          "alt": "fate long video",
+          "caption": "fate long video"
         },
         {
-          "image": "images/pool.jpg",
-          "alt": "Swimmer’s shadow over pool caustics",
-          "caption": "[Project name]"
+          "video": "https://youtu.be/oWiOACcfdhA",
+          "image": "images/video/fate-short-1.jpg",
+          "alt": "fate short video 1",
+          "caption": "fate short video 1"
+        },
+        {
+          "video": "https://youtu.be/KVNTKQilnI4",
+          "image": "images/video/fate-short-2.jpg",
+          "alt": "fate short video 2",
+          "caption": "fate short video 2"
+        },
+        {
+          "video": "https://youtu.be/acs4HTNJxKw",
+          "image": "images/video/mitahev-short-1.jpg",
+          "alt": "מתאהב בבחורות הלא נכונות סרטון קצר 1",
+          "caption": "מתאהב בבחורות הלא נכונות סרטון קצר 1"
+        },
+        {
+          "video": "https://youtu.be/wzqyhl7T_NM",
+          "image": "images/video/img-2798.jpg",
+          "alt": "IMG 2798",
+          "caption": "IMG 2798"
+        },
+        {
+          "video": "https://youtube.com/shorts/4vLSqx32Lyo",
+          "image": "images/video/video-5.jpg",
+          "alt": "סרטון 5",
+          "caption": "סרטון 5"
         }
-      ]
+      ],
+      "layout": "video"
     },
     {
       "slug": "stills",
@@ -142,6 +169,26 @@ window.SITE = {
           "caption": "[Project name]"
         }
       ]
+    },
+    {
+      "slug": "social",
+      "title": "Social",
+      "layout": "vertical",
+      "blurb": "Short, vertical videos made for Instagram and TikTok.",
+      "items": [
+        {
+          "video": "https://youtube.com/shorts/ZVTZdbid0Lg",
+          "image": "images/video/zaza-rooftop.jpg",
+          "alt": "זזה מטורף מגג לגג",
+          "caption": "זזה מטורף מגג לגג"
+        },
+        {
+          "video": "https://youtube.com/shorts/-03jDfgdvZo",
+          "image": "images/video/zaza-woman.jpg",
+          "alt": "זזה מטורף עם אישה",
+          "caption": "זזה מטורף עם אישה"
+        }
+      ]
     }
   ],
   "hero": [
@@ -168,6 +215,12 @@ window.SITE = {
       "topic": "creative",
       "image": "images/smoke.jpg",
       "alt": "Smoke lit from the side against black"
+    },
+    {
+      "slot": "e",
+      "topic": "social",
+      "image": "images/fog.jpg",
+      "alt": "Fog between tree trunks"
     }
   ],
   "projects": [

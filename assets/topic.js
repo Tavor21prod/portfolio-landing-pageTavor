@@ -39,9 +39,22 @@
   $('topic-title').textContent = t.title;
   $('topic-blurb').textContent = t.blurb || '';
 
+  // A video item opens on YouTube/Vimeo in a new tab. It shows a poster picture (item.image) or, if
+  // item.loop points to a short muted clip (.mp4/.webm), that clip on repeat. A plain item is just a picture.
+  var media = function (it, i) {
+    var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i ? ' loading="lazy"' : '') + '>';
+    if (!it.video) return pic;
+    var inner = it.loop
+      ? '<video src="' + esc(it.loop) + '" poster="' + esc(it.image) + '" muted loop autoplay playsinline preload="metadata"></video>'
+      : pic;
+    return '<a class="vid" href="' + esc(it.video) + '" target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
+      inner + '<span class="play" aria-hidden="true"></span></a>';
+  };
+
+  if (t.layout) $('topic-grid').classList.add(t.layout);
   $('topic-grid').innerHTML = (t.items || []).map(function (it, i) {
     return '<figure class="shot t' + (i % 4) + '">' +
-      '<span class="frame"><img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i ? ' loading="lazy"' : '') + '></span>' +
+      '<span class="frame">' + media(it, i) + '</span>' +
       (it.caption ? '<figcaption class="mono">' + esc(it.caption) + '</figcaption>' : '') +
       '</figure>';
   }).join('');
