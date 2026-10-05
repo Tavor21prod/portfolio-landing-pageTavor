@@ -41,38 +41,50 @@
 
   // A video item opens on YouTube/Vimeo in a new tab. It shows a poster picture (item.image) or, if
   // item.loop points to a short muted clip (.mp4/.webm), that clip: still showing the
-  // poster picture, playing on repeat only while the pointer is over it. fit:"contain" shows a clip whose
-  // shape differs from the tile (e.g. vertical) whole, with the poster's blurred sides filling the rest.
+  // poster picture, playing on repeat only while the pointer is over it.
+  // In a "feature" layout, an item with feature:true is a tall tile in the middle column.
   var media = function (it, i) {
     var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i ? ' loading="lazy"' : '') + '>';
     if (!it.video) return pic;
     var inner = it.loop
-      ? '<video src="' + esc(it.loop) + '" poster="' + esc(it.image) + '"' +
-        (it.fit === 'contain' ? ' class="contain" style="background:url(' + esc(it.image) + ') center/cover"' : '') +
-        ' muted loop playsinline preload="auto"></video>'
+      ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="auto"></video>'
       : pic;
     return '<a class="vid" href="' + esc(it.video) + '" target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
       inner + '<span class="play" aria-hidden="true"></span></a>';
   };
 
   if (t.layout) $('topic-grid').classList.add(t.layout);
-  $('topic-grid').innerHTML = (t.items || []).map(function (it, i) {
-    return '<figure class="shot t' + (i % 4) + '">' +
+  var items = t.items || [];
+  var tail = -1; // in a feature layout, the last ordinary tile sits under the tall one
+  items.forEach(function (it, i) { if (!it.feature) tail = i; });
+  var tile = function (it, i) {
+    return '<figure class="shot t' + (i % 4) + (it.feature ? ' feat' : '') + (t.layout === 'feature' && i === tail ? ' tail' : '') + '">' +
       '<span class="frame">' + media(it, i) + '</span>' +
       (it.caption ? '<figcaption class="mono">' + esc(it.caption) + '</figcaption>' : '') +
       '</figure>';
-  }).join('');
+  };
+  var main = '', side = '';
+  items.forEach(function (it, i) { if (t.layout === 'feature' && (it.feature || i === tail)) side += tile(it, i); else main += tile(it, i); });
+  // the tall tile goes first in the side column, the ordinary one under it
+  if (t.layout === 'feature') {
+    var tall = '', low = '';
+    items.forEach(function (it, i) { if (it.feature) tall += tile(it, i); else if (i === tail) low += tile(it, i); });
+    side = tall + low;
+    main += '<div class="stack">' + side + '</div>';
+  }
+  $('topic-grid').innerHTML = main;
 
   // Loop clips play while hovered or focused and rewind on leave. On touch screens, which can't hover,
   // they play while they are mostly in view instead.
   var play = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
-  var stop = function (v) { v.pause(); v.currentTime = 0; };
+  var stop = function (v) { v.pause(); v.currentTime = 0; v.classList.remove('on'); };
   var canHover = window.matchMedia('(hover: hover)').matches;
   var seen = !canHover && 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
     es.forEach(function (e) { e.isIntersecting ? play(e.target) : stop(e.target); });
   }, { threshold: 0.6 }) : null;
   document.querySelectorAll('.vid video').forEach(function (v) {
     var a = v.parentNode;
+    v.addEventListener('playing', function () { v.classList.add('on'); });
     a.addEventListener('mouseenter', function () { play(v); });
     a.addEventListener('mouseleave', function () { stop(v); });
     a.addEventListener('focus', function () { play(v); });

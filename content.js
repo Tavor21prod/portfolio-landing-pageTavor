@@ -68,7 +68,7 @@ window.SITE = {
     {
       "slug": "music",
       "title": "Music",
-      "blurb": "Visuals, live sessions and short promo clips for artists.",
+      "blurb": "Visuals and short-form clips for artists.",
       "items": [
         {
           "video": "https://youtu.be/aEiDrja27mo",
@@ -78,15 +78,15 @@ window.SITE = {
           "loop": "videos/loops/fate-long.mp4"
         },
         {
-          "video": "https://youtu.be/oWiOACcfdhA",
-          "image": "images/video/fate-short-1.jpg",
-          "alt": "fate short video 1",
+          "video": "https://youtu.be/wzqyhl7T_NM",
+          "image": "images/video/img-2798.jpg",
+          "alt": "IMG 2798",
           "caption": "",
-          "loop": "videos/loops/fate-short-1.mp4"
+          "loop": "videos/loops/img-2798.mp4"
         },
         {
           "video": "https://youtu.be/KVNTKQilnI4",
-          "image": "images/video/fate-short-2.jpg",
+          "image": "images/video/fate-short-2-thumb.jpg",
           "alt": "fate short video 2",
           "caption": "",
           "loop": "videos/loops/fate-short-2.mp4"
@@ -99,22 +99,22 @@ window.SITE = {
           "loop": "videos/loops/mitahev-short-1.mp4"
         },
         {
-          "video": "https://youtu.be/wzqyhl7T_NM",
-          "image": "images/video/img-2798.jpg",
-          "alt": "IMG 2798",
+          "video": "https://youtu.be/oWiOACcfdhA",
+          "image": "images/video/fate-short-1-flash.jpg",
+          "alt": "fate short video 1",
           "caption": "",
-          "loop": "videos/loops/img-2798.mp4"
+          "loop": "videos/loops/fate-short-1.mp4"
         },
         {
           "video": "https://youtube.com/shorts/4vLSqx32Lyo",
-          "image": "images/video/video-5.jpg",
+          "image": "images/video/video-5-vertical.jpg",
           "alt": "סרטון 5",
           "caption": "",
           "loop": "videos/loops/video-5.mp4",
-          "fit": "contain"
+          "feature": true
         }
       ],
-      "layout": "video"
+      "layout": "feature"
     },
     {
       "slug": "stills",
