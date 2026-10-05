@@ -11,28 +11,29 @@
 window.SITE = {
   "site": {
     "name": "Tavor",
-    "fullName": "Tavor [Surname]",
+    "fullName": "Tavor Production",
     "roles": [
-      "Director of Photography",
-      "Editor"
+      "Shooting",
+      "Editing",
+      "Creative"
     ],
     "location": "[City]",
     "brandSuffix": "Production",
-    "lede": "video & stills creator",
+    "lede": "shooting, editing & creative",
     "tagline": "FOR EVERY FIELD",
     "years": "2022 — 2026",
     "email": "hello@[yourdomain].com",
     "reelUrl": "https://vimeo.com/[your-showreel-id]",
     "statement": [
       {
-        "text": "Light first, then rhythm. I shoot and edit "
+        "text": "I shoot, edit and shape content for "
       },
       {
-        "text": "films that hold a breath",
+        "text": "artists, brands and anyone with an idea",
         "italic": true
       },
       {
-        "text": " a little longer than expected."
+        "text": " — and give every brief a point of view."
       }
     ],
     "social": [
@@ -48,81 +49,178 @@ window.SITE = {
         "label": "IMDb",
         "url": "https://imdb.com/name/[id]"
       }
-    ]
+    ],
+    "about": {
+      "photo": "",
+      "photoAlt": "Portrait of Tavor",
+      "photoCaption": "[Photo of you]",
+      "heading": "I'm Tavor",
+      "bio": [
+        "[Two or three sentences about you, in the first person: how you started and what pulls you to this work.]",
+        "[One sentence about how you like to work with people.]"
+      ],
+      "location": "[City]",
+      "available": "Music · Sport · Business · Art · Stills",
+      "cta": "Say hello"
+    }
   },
   "topics": [
     {
-      "slug": "interiors",
-      "title": "Interiors",
-      "blurb": "[One or two lines about this topic.]",
+      "slug": "music",
+      "title": "Music",
+      "blurb": "Visuals, live sessions and short promo clips for artists.",
       "items": [
-        { "image": "images/window.jpg", "alt": "Figure against a window with blinds", "caption": "[Caption]" },
-        { "image": "images/stairs.jpg", "alt": "Light shaft in a stairwell", "caption": "[Caption]" }
+        {
+          "video": "https://youtu.be/aEiDrja27mo",
+          "image": "images/video/fate-long.jpg",
+          "alt": "fate long video",
+          "caption": "fate long video"
+        },
+        {
+          "video": "https://youtu.be/oWiOACcfdhA",
+          "image": "images/video/fate-short-1.jpg",
+          "alt": "fate short video 1",
+          "caption": "fate short video 1"
+        },
+        {
+          "video": "https://youtu.be/KVNTKQilnI4",
+          "image": "images/video/fate-short-2.jpg",
+          "alt": "fate short video 2",
+          "caption": "fate short video 2"
+        },
+        {
+          "video": "https://youtu.be/acs4HTNJxKw",
+          "image": "images/video/mitahev-short-1.jpg",
+          "alt": "מתאהב בבחורות הלא נכונות סרטון קצר 1",
+          "caption": "מתאהב בבחורות הלא נכונות סרטון קצר 1"
+        },
+        {
+          "video": "https://youtu.be/wzqyhl7T_NM",
+          "image": "images/video/img-2798.jpg",
+          "alt": "IMG 2798",
+          "caption": "IMG 2798"
+        },
+        {
+          "video": "https://youtube.com/shorts/4vLSqx32Lyo",
+          "image": "images/video/video-5.jpg",
+          "alt": "סרטון 5",
+          "caption": "סרטון 5"
+        }
+      ],
+      "layout": "video"
+    },
+    {
+      "slug": "stills",
+      "title": "Stills",
+      "blurb": "Photography, portraits and still frames.",
+      "items": [
+        {
+          "image": "images/horizon.jpg",
+          "alt": "Low sun on a dark sea horizon",
+          "caption": "[Project name]"
+        },
+        {
+          "image": "images/fog.jpg",
+          "alt": "Tree trunks fading into fog",
+          "caption": "[Project name]"
+        },
+        {
+          "image": "images/window.jpg",
+          "alt": "Figure against a window with blinds",
+          "caption": "[Project name]"
+        }
       ]
     },
     {
-      "slug": "horizon",
-      "title": "Sea & Horizon",
-      "blurb": "[One or two lines about this topic.]",
+      "slug": "business",
+      "title": "Business",
+      "blurb": "Promotional videos that make a brand easy to remember.",
       "items": [
-        { "image": "images/horizon.jpg", "alt": "Low sun on a dark sea horizon", "caption": "[Caption]" },
-        { "image": "images/dunes.jpg", "alt": "Dunes in raking amber light", "caption": "[Caption]" },
-        { "image": "images/fog.jpg", "alt": "Tree trunks fading into fog", "caption": "[Caption]" }
+        {
+          "image": "images/window.jpg",
+          "alt": "Figure against a window with blinds",
+          "caption": "[Project name]"
+        },
+        {
+          "image": "images/stairs.jpg",
+          "alt": "Light across a concrete stairwell",
+          "caption": "[Project name]"
+        }
       ]
     },
     {
-      "slug": "night",
-      "title": "Night",
-      "blurb": "[One or two lines about this topic.]",
+      "slug": "creative",
+      "title": "Creative edits",
+      "blurb": "Personal edits, where there are no rules.",
       "items": [
-        { "image": "images/road.jpg", "alt": "Red tail-light streaks at night", "caption": "[Caption]" },
-        { "image": "images/pool.jpg", "alt": "Swimmer's shadow over pool caustics", "caption": "[Caption]" }
+        {
+          "image": "images/smoke.jpg",
+          "alt": "Side-lit smoke against black",
+          "caption": "[Project name]"
+        },
+        {
+          "image": "images/dunes.jpg",
+          "alt": "Sand ridges in raking light",
+          "caption": "[Project name]"
+        },
+        {
+          "image": "images/fog.jpg",
+          "alt": "Fog between tree trunks",
+          "caption": "[Project name]"
+        }
       ]
     },
     {
-      "slug": "texture",
-      "title": "Smoke & Texture",
-      "blurb": "[One or two lines about this topic.]",
+      "slug": "social",
+      "title": "Social",
+      "layout": "vertical",
+      "blurb": "Short, vertical videos made for Instagram and TikTok.",
       "items": [
-        { "image": "images/smoke.jpg", "alt": "Side-lit smoke against black", "caption": "[Caption]" },
-        { "image": "images/fog.jpg", "alt": "Fog between tree trunks", "caption": "[Caption]" },
-        { "image": "images/dunes.jpg", "alt": "Sand ridges in raking light", "caption": "[Caption]" }
-      ]
-    },
-    {
-      "slug": "structure",
-      "title": "Light & Structure",
-      "blurb": "[One or two lines about this topic.]",
-      "items": [
-        { "image": "images/stairs.jpg", "alt": "Light across a concrete stairwell", "caption": "[Caption]" },
-        { "image": "images/window.jpg", "alt": "Window blinds with hard light", "caption": "[Caption]" }
+        {
+          "video": "https://youtube.com/shorts/ZVTZdbid0Lg",
+          "image": "images/video/zaza-rooftop.jpg",
+          "alt": "זזה מטורף מגג לגג",
+          "caption": "זזה מטורף מגג לגג"
+        },
+        {
+          "video": "https://youtube.com/shorts/-03jDfgdvZo",
+          "image": "images/video/zaza-woman.jpg",
+          "alt": "זזה מטורף עם אישה",
+          "caption": "זזה מטורף עם אישה"
+        }
       ]
     }
   ],
   "hero": [
     {
       "slot": "a",
-      "topic": "interiors",
+      "topic": "music",
       "image": "images/window.jpg",
       "alt": "Silhouette of a figure against a window with blinds, hard light on the floor"
     },
     {
       "slot": "b",
-      "topic": "horizon",
+      "topic": "stills",
       "image": "images/horizon.jpg",
       "alt": "Low sun on a dark sea horizon"
     },
     {
       "slot": "c",
-      "topic": "night",
+      "topic": "business",
       "image": "images/road.jpg",
       "alt": "Red tail-light streaks and out-of-focus headlights at night"
     },
     {
       "slot": "d",
-      "topic": "texture",
+      "topic": "creative",
       "image": "images/smoke.jpg",
       "alt": "Smoke lit from the side against black"
+    },
+    {
+      "slot": "e",
+      "topic": "social",
+      "image": "images/fog.jpg",
+      "alt": "Fog between tree trunks"
     }
   ],
   "projects": [
@@ -130,7 +228,7 @@ window.SITE = {
       "slug": "the-long-field",
       "title": "The Long Field",
       "client": "[Client]",
-      "role": "Director of Photography",
+      "role": "Promo video",
       "year": "2026",
       "cover": "images/dunes.jpg",
       "coverAlt": "Aerial view of dunes in raking amber light",
@@ -155,7 +253,7 @@ window.SITE = {
       "slug": "quiet-weather",
       "title": "Quiet Weather",
       "client": "[Client]",
-      "role": "Cinematography & Edit",
+      "role": "Creative edit",
       "year": "2025",
       "cover": "images/fog.jpg",
       "coverAlt": "Tree trunks fading into fog",
@@ -172,7 +270,7 @@ window.SITE = {
       "slug": "salt-hour",
       "title": "Salt Hour",
       "client": "[Client]",
-      "role": "Director of Photography",
+      "role": "Music video",
       "year": "2025",
       "cover": "images/horizon.jpg",
       "coverAlt": "Low sun on a dark sea horizon",
@@ -189,7 +287,7 @@ window.SITE = {
       "slug": "night-drive",
       "title": "Night Drive",
       "client": "[Client]",
-      "role": "Editor",
+      "role": "Photography",
       "year": "2024",
       "cover": "images/road.jpg",
       "coverAlt": "Red tail-light streaks at night",
@@ -206,7 +304,7 @@ window.SITE = {
       "slug": "night-swimmers",
       "title": "Night Swimmers",
       "client": "[Client]",
-      "role": "Director of Photography",
+      "role": "Creative edit",
       "year": "2024",
       "cover": "images/pool.jpg",
       "coverAlt": "Overhead view of a swimmer's shadow over pool caustics",
@@ -223,7 +321,7 @@ window.SITE = {
       "slug": "interior-day",
       "title": "Interior, Day",
       "client": "[Client]",
-      "role": "Cinematography & Edit",
+      "role": "Business promo",
       "year": "2023",
       "cover": "images/window.jpg",
       "coverAlt": "Silhouette of a figure against a window with blinds",
