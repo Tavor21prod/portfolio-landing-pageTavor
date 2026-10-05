@@ -22,7 +22,7 @@
   var name = site.name || '';
   var full = site.fullName || name;
   var surname = full.indexOf(name) === 0 ? full.slice(name.length).trim() : '';
-  var roles = (site.roles || []).join(' & ');
+  var roles = (site.roles || []).join(' · ');
   var binds = { name: name, surname: surname, roles: roles, brandSuffix: site.brandSuffix || surname, lede: site.lede || roles, tagline: site.tagline || '', location: site.location, years: site.years, fullName: full };
 
   document.title = full + (roles ? ' — ' + roles : '');

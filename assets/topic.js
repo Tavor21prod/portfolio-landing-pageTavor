@@ -15,7 +15,7 @@
   var name = site.name || '';
   var full = site.fullName || name;
   var surname = full.indexOf(name) === 0 ? full.slice(name.length).trim() : '';
-  var roles = (site.roles || []).join(' & ');
+  var roles = (site.roles || []).join(' · ');
   var binds = { name: name, brandSuffix: site.brandSuffix || surname, roles: roles };
   document.querySelectorAll('[data-bind]').forEach(function (el) { el.textContent = binds[el.getAttribute('data-bind')] || ''; });
 
