@@ -33,6 +33,7 @@
   }
 
   var t = topics[at];
+  document.body.setAttribute('data-font', t.font || 'gothic');
   var next = topics[(at + 1) % topics.length];
   document.title = t.title + ' — ' + full;
   $('topic-label').textContent = '(Topic ' + pad(at + 1) + ' / ' + pad(topics.length) + ')';

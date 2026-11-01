@@ -19,7 +19,7 @@ window.SITE = {
     ],
     "location": "[City]",
     "brandSuffix": "Production",
-    "lede": "shooting, editing & creative",
+    "lede": "shooting editing & creative",
     "tagline": "FOR EVERY FIELD",
     "years": "2022 — 2026",
     "email": "hello@[yourdomain].com",
@@ -56,13 +56,14 @@ window.SITE = {
       "photoCaption": "[Photo of you]",
       "heading": "I'm Tavor",
       "bio": [
-        "[Two or three sentences about you, in the first person: how you started and what pulls you to this work.]",
-        "[One sentence about how you like to work with people.]"
+        "I shoot, edit and create for artists, brands and anyone with an idea worth showing.",
+        "Music videos, short clips for Instagram and TikTok, promos for businesses, and edits I make just because. Tell me what you have in mind and we'll build it together."
       ],
       "location": "[City]",
       "available": "Music · Sport · Business · Art · Stills",
       "cta": "Say hello"
-    }
+    },
+    "ledeAccent": "editing"
   },
   "topics": [
     {
@@ -114,7 +115,8 @@ window.SITE = {
           "feature": true
         }
       ],
-      "layout": "feature"
+      "layout": "feature",
+      "font": "gothic"
     },
     {
       "slug": "stills",
@@ -136,7 +138,8 @@ window.SITE = {
           "alt": "Figure against a window with blinds",
           "caption": "[Project name]"
         }
-      ]
+      ],
+      "font": "mono"
     },
     {
       "slug": "business",
@@ -153,7 +156,8 @@ window.SITE = {
           "alt": "Light across a concrete stairwell",
           "caption": "[Project name]"
         }
-      ]
+      ],
+      "font": "mono"
     },
     {
       "slug": "creative",
@@ -175,7 +179,8 @@ window.SITE = {
           "alt": "Fog between tree trunks",
           "caption": "[Project name]"
         }
-      ]
+      ],
+      "font": "gothic"
     },
     {
       "slug": "social",
@@ -195,7 +200,8 @@ window.SITE = {
           "alt": "זזה מטורף עם אישה",
           "caption": ""
         }
-      ]
+      ],
+      "font": "gothic"
     }
   ],
   "hero": [
