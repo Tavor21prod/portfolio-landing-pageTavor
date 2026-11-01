@@ -38,7 +38,7 @@
 
   $('hero-stills').innerHTML = (S.hero || []).map(function (h) {
     var t = topicBySlug[h.topic];
-    var href = t ? 'topic.html?t=' + encodeURIComponent(t.slug) : '#work';
+    var href = t ? 'topic.html?t=' + encodeURIComponent(t.slug) : '#top';
     var cap = t ? t.title : (h.caption || '');
     return '<a class="still s-' + esc(h.slot) + '" data-font="' + esc(t ? t.font || 'gothic' : 'gothic') + '" href="' + esc(href) + '">' +
       '<span class="frame"><img src="' + esc(h.image) + '" alt="' + esc(h.alt) + '"></span>' +
@@ -69,20 +69,11 @@
   cta.href = 'mailto:' + (site.email || '');
   cta.textContent = (ab.cta || 'Say hello') + ' \u2192';
 
-  // Work grid — 6-slot editorial pattern repeats for any number of projects
-  $('count').textContent = '(' + pad(featured.length) + ')';
-  $('grid').innerHTML = featured.map(function (p, i) {
-    return '<a class="card p' + (i % 6) + '" href="' + esc(p.href || '#' + p.slug) + '">' +
-      '<span class="frame"><img src="' + esc(p.cover) + '" alt="' + esc(p.coverAlt) + '" loading="lazy"></span>' +
-      '<div class="cap"><span class="num mono">' + bySlug[p.slug].num + '</span><h3 class="title">' + esc(p.title) + '</h3></div>' +
-      '<div class="meta mono"><span>' + esc(p.client) + '</span><span>' + esc(p.role) + '</span><span>' + esc(p.year) + '</span></div></a>';
-  }).join('');
-
 
   // Phone carousel of the topic covers: swipe sideways; the centred slide plays its topic's loop clips in turn.
   var flow = $('flow');
   if (flow) {
-    flow.innerHTML = (S.hero || []).map(function (h) {
+    var cards = (S.hero || []).map(function (h) {
       var t = topicBySlug[h.topic];
       if (!t) return '';
       var clips = (t.items || []).filter(function (it) { return it.loop; }).map(function (it) { return it.loop; });
@@ -90,7 +81,10 @@
         '<img src="' + esc(h.image) + '" alt="' + esc(h.alt) + '">' +
         '<video muted playsinline preload="none" aria-hidden="true"></video>' +
         '<span class="slide-title">' + esc(t.title) + '</span></a>';
-    }).join('');
+    }).filter(Boolean);
+    // three copies back to back; scrolling is quietly moved to the middle copy, so the strip never ends
+    var per = cards.length, loop = per > 1;
+    flow.innerHTML = loop ? cards.concat(cards, cards).join('') : cards.join('');
     var slides = Array.prototype.slice.call(flow.children);
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var current = -1;
@@ -120,7 +114,25 @@
       current = best; slides[best].classList.add('on'); startClips(slides[best]);
     };
     var tick = 0;
-    flow.addEventListener('scroll', function () { cancelAnimationFrame(tick); tick = requestAnimationFrame(settle); }, { passive: true });
+    var wrapTimer = 0;
+    var recentre = function () {
+      if (!loop || !flow.offsetParent || current < 0) return;
+      var span = slides[per].offsetLeft - slides[0].offsetLeft, shift = current < per ? span : current >= 2 * per ? -span : 0;
+      if (!shift) return;
+      flow.style.scrollSnapType = 'none';
+      flow.scrollLeft += shift;
+      current += shift > 0 ? per : -per;
+      requestAnimationFrame(function () { flow.style.scrollSnapType = ''; });
+    };
+    flow.addEventListener('scroll', function () {
+      cancelAnimationFrame(tick); tick = requestAnimationFrame(settle);
+      clearTimeout(wrapTimer); wrapTimer = setTimeout(recentre, 140);
+    }, { passive: true });
+    if (loop) {
+      var home = function () { if (flow.offsetParent) { flow.style.scrollSnapType = 'none'; flow.scrollLeft = slides[per].offsetLeft + slides[per].offsetWidth / 2 - flow.clientWidth / 2; requestAnimationFrame(function () { flow.style.scrollSnapType = ''; settle(); }); } };
+      slides.forEach(function (el, i) { if (i < per || i >= 2 * per) { el.setAttribute('aria-hidden', 'true'); el.tabIndex = -1; } });
+      window.addEventListener('load', home); home();
+    }
     window.addEventListener('resize', settle);
     window.addEventListener('load', settle);
     settle();

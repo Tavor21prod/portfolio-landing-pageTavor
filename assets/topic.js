@@ -45,7 +45,7 @@
   // poster picture, playing on repeat only while the pointer is over it.
   // In a "feature" layout, an item with feature:true is a tall tile in the middle column.
   var media = function (it, i) {
-    var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i ? ' loading="lazy"' : '') + '>';
+    var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i && !t.carousel ? ' loading="lazy"' : '') + '>';
     if (!it.video) return pic;
     var inner = it.loop
       ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="auto"></video>'
@@ -73,6 +73,14 @@
     side = tall + low;
     main += '<div class="stack">' + side + '</div>';
   }
+  // On phones a "carousel" topic becomes a swipeable strip that never ends: three copies of the tiles
+  // back to back, with the scroll quietly moved back to the middle copy. The copies are hidden on wider screens.
+  var per = items.length, ring = !!t.carousel && per > 1;
+  if (ring) {
+    $('topic-grid').classList.add('carousel');
+    var again = main.replace(/class="shot /g, 'class="shot copy ').replace(/<a class="vid"/g, '<a class="vid" tabindex="-1" aria-hidden="true"');
+    main = main + again + again;
+  }
   $('topic-grid').innerHTML = main;
 
   // Loop clips play while hovered or focused and rewind on leave. On touch screens, which can't hover,
@@ -92,6 +100,36 @@
     a.addEventListener('blur', function () { stop(v); });
     if (seen) seen.observe(v);
   });
+
+  if (ring) {
+    var strip = $('topic-grid'), cards = Array.prototype.slice.call(strip.children), at0 = -1, settleT = 0, wrapT = 0;
+    var live = function () { return strip.offsetParent && strip.scrollWidth > strip.clientWidth + 4; };
+    var settle = function () {
+      if (!live()) return;
+      var mid = strip.scrollLeft + strip.clientWidth / 2, best = 0, gap = Infinity;
+      cards.forEach(function (el, i) { var d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid); if (d < gap) { gap = d; best = i; } });
+      if (best === at0) return;
+      var v;
+      if (at0 > -1) { cards[at0].classList.remove('on'); v = cards[at0].querySelector('video'); if (v) stop(v); }
+      at0 = best; cards[best].classList.add('on');
+      v = cards[best].querySelector('video'); if (v) play(v);
+    };
+    var snapOff = function (fn) { strip.style.scrollSnapType = 'none'; fn(); requestAnimationFrame(function () { strip.style.scrollSnapType = ''; settle(); }); };
+    var recentre = function () {
+      if (!live() || at0 < 0) return;
+      var span = cards[per].offsetLeft - cards[0].offsetLeft, shift = at0 < per ? span : at0 >= 2 * per ? -span : 0;
+      if (!shift) return;
+      snapOff(function () { cards[at0].classList.remove('on'); at0 = -1; strip.scrollLeft += shift; });
+    };
+    var home = function () { if (live()) snapOff(function () { strip.scrollLeft = cards[per].offsetLeft + cards[per].offsetWidth / 2 - strip.clientWidth / 2; }); };
+    strip.addEventListener('scroll', function () {
+      cancelAnimationFrame(settleT); settleT = requestAnimationFrame(settle);
+      clearTimeout(wrapT); wrapT = setTimeout(recentre, 140);
+    }, { passive: true });
+    window.addEventListener('resize', function () { at0 = -1; home(); });
+    window.addEventListener('load', home);
+    home();
+  }
 
   var n = $('topic-next');
   if (next && next.slug !== t.slug) {
