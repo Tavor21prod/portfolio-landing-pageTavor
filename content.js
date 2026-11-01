@@ -19,7 +19,7 @@ window.SITE = {
     ],
     "location": "[City]",
     "brandSuffix": "Production",
-    "lede": "shooting, editing & creative",
+    "lede": "visuals creating",
     "tagline": "FOR EVERY FIELD",
     "years": "2022 — 2026",
     "email": "hello@[yourdomain].com",
@@ -56,13 +56,14 @@ window.SITE = {
       "photoCaption": "[Photo of you]",
       "heading": "I'm Tavor",
       "bio": [
-        "[Two or three sentences about you, in the first person: how you started and what pulls you to this work.]",
-        "[One sentence about how you like to work with people.]"
+        "I shoot, edit and create for artists, brands and anyone with an idea worth showing.",
+        "Music videos, short clips for Instagram and TikTok, promos for businesses, and edits I make just because. Tell me what you have in mind and we'll build it together."
       ],
       "location": "[City]",
       "available": "Music · Sport · Business · Art · Stills",
       "cta": "Say hello"
-    }
+    },
+    "ledeAccent": "creating"
   },
   "topics": [
     {
@@ -114,7 +115,8 @@ window.SITE = {
           "feature": true
         }
       ],
-      "layout": "feature"
+      "layout": "feature",
+      "font": "gothic"
     },
     {
       "slug": "stills",
@@ -136,28 +138,50 @@ window.SITE = {
           "alt": "Figure against a window with blinds",
           "caption": "[Project name]"
         }
-      ]
+      ],
+      "font": "mono"
     },
     {
       "slug": "business",
-      "title": "Business",
-      "blurb": "Promotional videos that make a brand easy to remember.",
+      "title": "Promo",
+      "layout": "vertical",
+      "carousel": true,
+      "blurb": "",
       "items": [
         {
-          "image": "images/window.jpg",
-          "alt": "Figure against a window with blinds",
-          "caption": "[Project name]"
+          "video": "https://youtube.com/shorts/xXHyCzSY3eI",
+          "image": "images/video/promo-recovery.jpg",
+          "loop": "videos/loops/promo-recovery.mp4",
+          "alt": "Pro Recovery boots being laid out in a martial arts hall",
+          "caption": ""
         },
         {
-          "image": "images/stairs.jpg",
-          "alt": "Light across a concrete stairwell",
-          "caption": "[Project name]"
+          "video": "https://youtube.com/shorts/P1PwGRQwjCA",
+          "image": "images/video/promo-warehouse.jpg",
+          "loop": "videos/loops/promo-warehouse.mp4",
+          "alt": "A warehouse manager in an orange vest talking to camera",
+          "caption": ""
+        },
+        {
+          "video": "https://youtu.be/PqyONhNPsjY",
+          "image": "images/video/promo-interview.jpg",
+          "loop": "videos/loops/promo-interview.mp4",
+          "alt": "A woman laughing mid-interview on a basketball court",
+          "caption": ""
+        },
+        {
+          "video": "https://youtu.be/qFG7CK7zIZY",
+          "image": "images/video/promo-command.jpg",
+          "loop": "videos/loops/promo-command.mp4",
+          "alt": "A young man and woman answering a street question",
+          "caption": ""
         }
-      ]
+      ],
+      "font": "mono"
     },
     {
       "slug": "creative",
-      "title": "Creative edits",
+      "title": "Edits",
       "blurb": "Personal edits, where there are no rules.",
       "items": [
         {
@@ -175,30 +199,76 @@ window.SITE = {
           "alt": "Fog between tree trunks",
           "caption": "[Project name]"
         }
-      ]
+      ],
+      "font": "gothic"
     },
     {
       "slug": "social",
       "title": "Social",
       "layout": "vertical",
+      "carousel": true,
       "blurb": "Short, vertical videos made for Instagram and TikTok.",
       "items": [
         {
-          "video": "https://youtube.com/shorts/ZVTZdbid0Lg",
-          "image": "images/video/zaza-rooftop.jpg",
-          "alt": "זזה מטורף מגג לגג",
+          "video": "https://youtube.com/shorts/-03jDfgdvZo",
+          "image": "images/video/zaza-woman.jpg",
+          "loop": "videos/loops/zaza-woman.mp4",
+          "alt": "זזה מטורף עם אישה",
           "caption": ""
         },
         {
-          "video": "https://youtube.com/shorts/-03jDfgdvZo",
-          "image": "images/video/zaza-woman.jpg",
-          "alt": "זזה מטורף עם אישה",
+          "video": "https://youtu.be/EFBuUVs1IhU",
+          "image": "images/video/social-wine-tasting.jpg",
+          "loop": "videos/loops/social-wine-tasting.mp4",
+          "alt": "Two men tasting white wine, one pouring from a bottle",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/z2NK7m4g7Dk",
+          "image": "images/video/social-night-training.jpg",
+          "loop": "videos/loops/social-night-training.mp4",
+          "alt": "A coach in a white shirt calling a night training session",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/21VrdcbH-iU",
+          "image": "images/video/social-grapes.jpg",
+          "loop": "videos/loops/social-grapes.mp4",
+          "alt": "Hands tipping crushed grapes into a steel tank",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/cHRI4mekWAg",
+          "image": "images/video/social-basketball.jpg",
+          "loop": "videos/loops/social-basketball.mp4",
+          "alt": "A basketball player dribbling in a gym",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/cOL_9H7WTyo",
+          "image": "images/video/social-pressing.jpg",
+          "loop": "videos/loops/social-pressing.mp4",
+          "alt": "Pressed grape skins in close-up",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/84e0p0KcbvQ",
+          "image": "images/video/social-wine-glass.jpg",
+          "loop": "videos/loops/social-wine-glass.mp4",
+          "alt": "A man in a patterned shirt holding a glass of wine",
           "caption": ""
         }
-      ]
+      ],
+      "font": "gothic"
     }
   ],
   "hero": [
+    {
+      "slot": "c",
+      "topic": "business",
+      "image": "images/video/promo-cover.jpg",
+      "alt": "A woman talking to camera in a basketball hall"
+    },
     {
       "slot": "a",
       "topic": "music",
@@ -212,12 +282,6 @@ window.SITE = {
       "alt": "Low sun on a dark sea horizon"
     },
     {
-      "slot": "c",
-      "topic": "business",
-      "image": "images/road.jpg",
-      "alt": "Red tail-light streaks and out-of-focus headlights at night"
-    },
-    {
       "slot": "d",
       "topic": "creative",
       "image": "images/smoke.jpg",
@@ -226,8 +290,8 @@ window.SITE = {
     {
       "slot": "e",
       "topic": "social",
-      "image": "images/fog.jpg",
-      "alt": "Fog between tree trunks"
+      "image": "images/video/social-cover.jpg",
+      "alt": "White wine being poured into a glass"
     }
   ],
   "projects": [
