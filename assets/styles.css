@@ -150,7 +150,9 @@ em{font-style:normal}
 .brand{font-size:12px;gap:.2em}
 .brand em{font-size:21px}
 .nav-links .idx{display:none}
-.hero{height:calc(320px + 75vw);min-height:0}
+.nav{mix-blend-mode:normal}
+.grain{transform:translateZ(0)}
+.hero{height:calc(276px + 78vw);min-height:0}
 .name .glyph{display:none}
 .still{display:none}
 .hero>.reel{top:212px}
@@ -169,6 +171,7 @@ em{font-style:normal}
 .intro::before{content:"";position:absolute;left:50%;top:50%;width:112%;height:150%;transform:translate(-50%,-52%);background:radial-gradient(ellipse closest-side at 50% 50%,rgba(255,255,255,.34) 0,rgba(255,255,255,.24) 22%,rgba(255,255,255,.13) 48%,rgba(255,255,255,.05) 74%,rgba(255,255,255,0) 100%);filter:blur(14px);z-index:-1;pointer-events:none}
 .lede{font-size:37px;line-height:.78;letter-spacing:-.015em;word-spacing:-.62em;max-width:10.6em;margin:22px 0 26px;transform:scaleY(1.42);filter:url(#rough);color:rgba(243,239,230,.92);text-shadow:0 0 16px rgba(243,239,230,.18)}
 .lede .gothic{display:block}
+.t3d{width:100%}
 .tagline{font-size:11px;letter-spacing:.5em;margin-left:.5em}
 .side{display:none}
 .still .cap{display:none}
@@ -180,9 +183,9 @@ em{font-style:normal}
 .name{left:5%;bottom:30px;font-size:40vw;line-height:.82;flex-wrap:wrap;width:2.5em}
 .g3{margin-left:.7em}
 .cue{display:none}
-.statement{display:flex;align-items:center;min-height:78vh;padding:72px 7%}
+.statement{display:flex;align-items:center;padding:8px 6%}
 .statement .label{padding:0;margin-bottom:24px}
-.statement-text{font-size:15px;line-height:2.6;letter-spacing:.3em;text-transform:uppercase}
+.statement-text{width:100%;font-size:15px;line-height:2.6;letter-spacing:.16em;text-transform:uppercase}
 .about{display:block;padding:20px 5% 120px}
 .about .label{padding:0;margin-bottom:24px}
 .portrait{width:78%;margin-bottom:40px}
@@ -285,6 +288,11 @@ em{font-style:normal}
 .topic-grid.carousel::-webkit-scrollbar{display:none}
 .topic-grid.carousel .shot,.topic-grid.carousel .shot:nth-child(even),.topic-grid.carousel .shot.copy{display:block;flex:0 0 100%;margin:0;grid-column:auto;scroll-snap-align:center;animation:none;opacity:.5;transform:scale(.74);transition:opacity .5s var(--ease),transform .7s var(--ease)}
 .topic-grid.carousel .shot.on{opacity:1;transform:scale(1.07)}
+.carousel-wrap{position:relative}
+.carousel-wrap .flow-glow{top:calc(14px + 37.5vw);z-index:0;width:130vw;height:112vw;margin:-56vw 0 0 -65vw;-webkit-mask-image:none;mask-image:none;pointer-events:none}
+.topic-grid.carousel{position:relative;z-index:1;padding:14px 20%;margin-bottom:100px}
+.topic-grid.carousel .frame{aspect-ratio:4/5;border-radius:20px}
+.topic-grid.carousel .play{display:none}
 .topic-foot{flex-direction:column;align-items:flex-start;padding:48px 5% 40px}
 .topic-next{align-items:flex-start}
 }
@@ -292,3 +300,22 @@ em{font-style:normal}
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation:none !important;transition:none !important}
 }
+.intro-run .flow,.intro-run .flow-glow{opacity:0}
+.flow.jump .slide,.flow.jump .slide *{transition:none}
+.flow.spin .slide{opacity:.85;transform:scale(.86);transition:none}
+.intro-nav .nav{opacity:0}
+.intro-nav .statement-text{visibility:hidden}
+.brand,.brand em{font-family:var(--sans);font-weight:400;font-style:normal;text-transform:uppercase;color:#fff}
+.brand{letter-spacing:.5em;gap:.6em;font-size:11px}
+.brand em{font-size:inherit;letter-spacing:inherit}
+@media (max-width:720px){.brand{font-size:10px;letter-spacing:.24em;gap:.5em}.brand em{font-size:inherit}}
+.t3d{display:block;perspective:640px;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.t3d.held{cursor:grabbing}
+.t3d .lede{position:relative;transform-style:preserve-3d;filter:none;text-shadow:none}
+.t3d-layer{display:block}
+.t3d-layer.back{position:absolute;left:0;top:0;width:100%;color:#34322e;text-shadow:none;filter:none;pointer-events:none}
+.t3d-layer.back .gothic{color:#6f5f16}
+.t3d-layer.rear{color:rgba(243,239,230,.92)}
+.t3d-layer.rear .gothic{color:#f6d84c}
+.speckle{position:absolute;left:-12%;top:-30%;width:124%;height:160%;background:url(../images/speckle.png) 0 0/192px 192px;pointer-events:none;z-index:6}
+@media (max-width:720px){.t3d-layer.front>span>span,.t3d-layer.front .gothic>span>span{filter:url(#rough)}.t3d-layer.front{text-shadow:0 0 16px rgba(243,239,230,.18)}}
