@@ -17,10 +17,10 @@ window.SITE = {
       "Editing",
       "Creative"
     ],
-    "location": "[City]",
+    "location": "Herzliya",
     "brandSuffix": "Production",
     "lede": "visuals creator",
-    "tagline": "FOR EVERY FIELD",
+    "tagline": "Tavor Production",
     "years": "2022 — 2026",
     "email": "hello@[yourdomain].com",
     "reelUrl": "https://vimeo.com/[your-showreel-id]",
@@ -51,15 +51,15 @@ window.SITE = {
       }
     ],
     "about": {
-      "photo": "",
-      "photoAlt": "Portrait of Tavor",
+      "photo": "images/about-tavor.jpg",
+      "photoAlt": "Tavor on a staircase landing, shooting down with a camera",
       "photoCaption": "[Photo of you]",
       "heading": "I'm Tavor",
       "bio": [
         "I shoot, edit and create for artists, brands and anyone with an idea worth showing.",
         "Music videos, short clips for Instagram and TikTok, promos for businesses, and edits I make just because. Tell me what you have in mind and we'll build it together."
       ],
-      "location": "[City]",
+      "location": "Herzliya",
       "available": "Music · Sport · Business · Art · Stills",
       "cta": "Say hello"
     },

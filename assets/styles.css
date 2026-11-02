@@ -292,3 +292,11 @@ em{font-style:normal}
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation:none !important;transition:none !important}
 }
+.intro-run .flow,.intro-run .flow-glow{opacity:0}
+.flow.jump .slide,.flow.jump .slide *{transition:none}
+.flow.spin .slide{opacity:.85;transform:scale(.86);transition:none}
+.intro-nav .nav{opacity:0}
+.brand,.brand em{font-family:var(--sans);font-weight:400;font-style:normal;text-transform:uppercase;color:var(--mute)}
+.brand{letter-spacing:.5em;gap:.6em;font-size:11px}
+.brand em{font-size:inherit;letter-spacing:inherit}
+@media (max-width:720px){.brand{font-size:10px;letter-spacing:.24em;gap:.5em}.brand em{font-size:inherit}}
