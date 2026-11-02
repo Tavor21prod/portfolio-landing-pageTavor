@@ -19,7 +19,7 @@ window.SITE = {
     ],
     "location": "[City]",
     "brandSuffix": "Production",
-    "lede": "visuals creating",
+    "lede": "visuals creator",
     "tagline": "FOR EVERY FIELD",
     "years": "2022 — 2026",
     "email": "hello@[yourdomain].com",
@@ -63,7 +63,7 @@ window.SITE = {
       "available": "Music · Sport · Business · Art · Stills",
       "cta": "Say hello"
     },
-    "ledeAccent": "creating"
+    "ledeAccent": "creator"
   },
   "topics": [
     {
@@ -149,10 +149,10 @@ window.SITE = {
       "blurb": "",
       "items": [
         {
-          "video": "https://youtube.com/shorts/xXHyCzSY3eI",
-          "image": "images/video/promo-recovery.jpg",
-          "loop": "videos/loops/promo-recovery.mp4",
-          "alt": "Pro Recovery boots being laid out in a martial arts hall",
+          "video": "https://youtu.be/PqyONhNPsjY",
+          "image": "images/video/promo-interview.jpg",
+          "loop": "videos/loops/promo-interview.mp4",
+          "alt": "A woman laughing mid-interview on a basketball court",
           "caption": ""
         },
         {
@@ -163,17 +163,17 @@ window.SITE = {
           "caption": ""
         },
         {
-          "video": "https://youtu.be/PqyONhNPsjY",
-          "image": "images/video/promo-interview.jpg",
-          "loop": "videos/loops/promo-interview.mp4",
-          "alt": "A woman laughing mid-interview on a basketball court",
-          "caption": ""
-        },
-        {
           "video": "https://youtu.be/qFG7CK7zIZY",
           "image": "images/video/promo-command.jpg",
           "loop": "videos/loops/promo-command.mp4",
           "alt": "A young man and woman answering a street question",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/xXHyCzSY3eI",
+          "image": "images/video/promo-recovery.jpg",
+          "loop": "videos/loops/promo-recovery.mp4",
+          "alt": "Pro Recovery boots being laid out in a martial arts hall",
           "caption": ""
         }
       ],
@@ -182,22 +182,24 @@ window.SITE = {
     {
       "slug": "creative",
       "title": "Edits",
+      "layout": "vertical",
+      "carousel": true,
+      "more": { "eyebrow": "More on", "name": "TikTok", "handle": "@tavor_m", "href": "https://www.tiktok.com/@tavor_m", "image": "images/video/edits-tiktok.jpg" },
       "blurb": "Personal edits, where there are no rules.",
       "items": [
         {
-          "image": "images/smoke.jpg",
-          "alt": "Side-lit smoke against black",
-          "caption": "[Project name]"
+          "video": "https://youtube.com/shorts/8T4l5FpoOkY",
+          "image": "images/video/edits-hashisha.jpg",
+          "loop": "videos/loops/edits-hashisha.mp4",
+          "alt": "A basketball player shooting over a defender",
+          "caption": ""
         },
         {
-          "image": "images/dunes.jpg",
-          "alt": "Sand ridges in raking light",
-          "caption": "[Project name]"
-        },
-        {
-          "image": "images/fog.jpg",
-          "alt": "Fog between tree trunks",
-          "caption": "[Project name]"
+          "video": "https://youtube.com/shorts/NSqNsbH6660",
+          "image": "images/video/edits-adir.jpg",
+          "loop": "videos/loops/edits-adir.mp4",
+          "alt": "A basketball player in yellow driving between two defenders",
+          "caption": ""
         }
       ],
       "font": "gothic"
@@ -210,17 +212,17 @@ window.SITE = {
       "blurb": "Short, vertical videos made for Instagram and TikTok.",
       "items": [
         {
-          "video": "https://youtube.com/shorts/-03jDfgdvZo",
-          "image": "images/video/zaza-woman.jpg",
-          "loop": "videos/loops/zaza-woman.mp4",
-          "alt": "זזה מטורף עם אישה",
-          "caption": ""
-        },
-        {
           "video": "https://youtu.be/EFBuUVs1IhU",
           "image": "images/video/social-wine-tasting.jpg",
           "loop": "videos/loops/social-wine-tasting.mp4",
           "alt": "Two men tasting white wine, one pouring from a bottle",
+          "caption": ""
+        },
+        {
+          "video": "https://youtube.com/shorts/-03jDfgdvZo",
+          "image": "images/video/zaza-woman.jpg",
+          "loop": "videos/loops/zaza-woman.mp4",
+          "alt": "זזה מטורף עם אישה",
           "caption": ""
         },
         {

@@ -75,10 +75,16 @@
   }
   // On phones a "carousel" topic becomes a swipeable strip that never ends: three copies of the tiles
   // back to back, with the scroll quietly moved back to the middle copy. The copies are hidden on wider screens.
-  var per = items.length, ring = !!t.carousel && per > 1;
+  // a closing tile that links out to a profile (t.more), shown after the videos
+  if (t.more) {
+    main += '<figure class="shot more"><span class="frame"><a class="more-card" href="' + esc(t.more.href) + '" target="_blank" rel="noopener" aria-label="' + esc(t.more.eyebrow + ' ' + t.more.name + ' ' + t.more.handle) + '">' +
+      (t.more.image ? '<img class="more-pic" src="' + esc(t.more.image) + '" alt="">' : '') +
+      '<span class="more-eyebrow mono">' + esc(t.more.eyebrow) + '</span><span class="more-name">' + esc(t.more.name) + '</span><span class="more-handle mono">' + esc(t.more.handle) + ' \u2197</span></a></span></figure>';
+  }
+  var per = items.length + (t.more ? 1 : 0), ring = !!t.carousel && per > 1;
   if (ring) {
     $('topic-grid').classList.add('carousel');
-    var again = main.replace(/class="shot /g, 'class="shot copy ').replace(/<a class="vid"/g, '<a class="vid" tabindex="-1" aria-hidden="true"');
+    var again = main.replace(/class="shot /g, 'class="shot copy ').replace(/<a class="(vid|more-card)"/g, '<a class="$1" tabindex="-1" aria-hidden="true"');
     main = main + again + again;
   }
   $('topic-grid').innerHTML = main;
