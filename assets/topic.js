@@ -48,7 +48,7 @@
     var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i && !t.carousel ? ' loading="lazy"' : '') + '>';
     if (!it.video) return pic;
     var inner = it.loop
-      ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="auto"></video>'
+      ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="none"></video>'
       : pic;
     return '<a class="vid" href="' + esc(it.video) + '" target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
       inner + '<span class="play" aria-hidden="true"></span></a>';
@@ -86,6 +86,11 @@
     $('topic-grid').classList.add('carousel');
     var again = main.replace(/class="shot /g, 'class="shot copy ').replace(/<a class="(vid|more-card)"/g, '<a class="$1" tabindex="-1" aria-hidden="true"');
     main = main + again + again;
+    var around = document.createElement('div');
+    around.className = 'carousel-wrap';
+    around.innerHTML = '<div class="flow-glow" aria-hidden="true"></div>';
+    $('topic-grid').parentNode.insertBefore(around, $('topic-grid'));
+    around.appendChild($('topic-grid'));
   }
   $('topic-grid').innerHTML = main;
 

@@ -22,7 +22,7 @@ window.SITE = {
     "lede": "visuals creator",
     "tagline": "Tavor Production",
     "years": "2022 — 2026",
-    "email": "hello@[yourdomain].com",
+    "email": "tavor2005@gmail.com",
     "reelUrl": "https://vimeo.com/[your-showreel-id]",
     "statement": [
       {
@@ -38,16 +38,16 @@ window.SITE = {
     ],
     "social": [
       {
+        "label": "WhatsApp",
+        "url": "https://wa.me/972529682466"
+      },
+      {
         "label": "Instagram",
-        "url": "https://instagram.com/[handle]"
+        "url": "https://www.instagram.com/tavor_production"
       },
       {
-        "label": "Vimeo",
-        "url": "https://vimeo.com/[handle]"
-      },
-      {
-        "label": "IMDb",
-        "url": "https://imdb.com/name/[id]"
+        "label": "TikTok",
+        "url": "https://www.tiktok.com/@tavor_m"
       }
     ],
     "about": {
@@ -185,7 +185,7 @@ window.SITE = {
       "layout": "vertical",
       "carousel": true,
       "more": { "eyebrow": "More on", "name": "TikTok", "handle": "@tavor_m", "href": "https://www.tiktok.com/@tavor_m", "image": "images/video/edits-tiktok.jpg" },
-      "blurb": "Personal edits, where there are no rules.",
+      "blurb": "",
       "items": [
         {
           "video": "https://youtube.com/shorts/8T4l5FpoOkY",
@@ -286,8 +286,8 @@ window.SITE = {
     {
       "slot": "d",
       "topic": "creative",
-      "image": "images/smoke.jpg",
-      "alt": "Smoke lit from the side against black"
+      "image": "images/video/edits-cover.jpg",
+      "alt": "A basketball player shooting over a defender"
     },
     {
       "slot": "e",

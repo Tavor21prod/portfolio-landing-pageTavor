@@ -66,7 +66,9 @@
   $('about-bio').innerHTML = (ab.bio || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
   $('about-meta').innerHTML = [ab.location ? 'Based in ' + esc(ab.location) : ''].filter(Boolean).join('<br><br>');
   var cta = $('about-cta');
-  cta.href = 'mailto:' + (site.email || '');
+  var chat = (site.social || []).filter(function (s) { return s.label === 'WhatsApp'; })[0];
+  cta.href = chat ? chat.url : 'mailto:' + (site.email || '');
+  if (chat) { cta.target = '_blank'; cta.rel = 'noopener'; }
   cta.textContent = (ab.cta || 'Say hello') + ' \u2192';
 
 
@@ -96,6 +98,7 @@
       var clips = JSON.parse(el.getAttribute('data-clips') || '[]');
       if (!clips.length || still) return;
       var v = el.querySelector('video'), n = 0;
+      v.preload = 'auto';
       var next = function () {
         v.src = clips[n % clips.length]; n++;
         var p = v.play(); if (p && p.then) p.then(function () { v.classList.add('live'); }).catch(function () {});
@@ -148,8 +151,8 @@
 
   // The opening text surfaces out of film grain: an SVG noise mask whose threshold sweeps down, then the filter is dropped.
   var intro = document.querySelector('.intro'), fn = document.getElementById('reveal-fn');
-  if (intro && fn && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var t0 = null, dur = document.documentElement.classList.contains('intro-run') ? 2000 : 4400;
+  if (intro && fn && !document.documentElement.classList.contains('intro-run') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var t0 = null, dur = 4400;
     intro.style.filter = 'url(#grain-reveal)';
     fn.setAttribute('intercept', '-14');
     var surface = function (ts) {
@@ -183,31 +186,104 @@
     });
   };
 
+  // The title is a real 3D object: stacked layers give it depth, dragging turns it, a flick spins it fast with a motion blur,
+  // and it always comes back to face the visitor.
+  // Every layer is split into letters that stay that way, so the opening can raise the same 3D title that later turns.
+  function turnable(forOpening) {
+    var title = document.querySelector('.lede');
+    if (!title) return null;
+    var DEPTH = 7, html = title.innerHTML, plain = title.textContent, stage = document.createElement('div'), rows = [];
+    stage.className = 't3d';
+    title.parentNode.insertBefore(stage, title);
+    stage.appendChild(title);
+    title.innerHTML = '';
+    for (var d = 0; d <= DEPTH; d++) {
+      var layer = document.createElement('span'), row = [];
+      layer.className = 't3d-layer ' + (d ? 'back' + (d === DEPTH ? ' rear' : '') : 'front');
+      layer.setAttribute('aria-hidden', 'true');
+      layer.style.transform = 'translateZ(' + (-d * 1.9) + 'px)';
+      layer.innerHTML = html;
+      splitLetters(layer, row);
+      if (!forOpening) row.forEach(function (c) { c.style.opacity = ''; });
+      title.appendChild(layer);
+      rows.push(row);
+    }
+    title.setAttribute('role', 'img');
+    title.setAttribute('aria-label', plain);
+    var scaleY = window.matchMedia('(max-width: 720px)').matches ? ' scaleY(1.42)' : '';
+    var REST_Y = -16, REST_X = 7, y = REST_Y, x = REST_X, vy = 0, vx = 0, held = false, lastX = 0, lastY = 0, lastT = 0, raf = 0;
+    var paint = function () {
+      title.style.transform = 'rotateX(' + x.toFixed(2) + 'deg) rotateY(' + y.toFixed(2) + 'deg)' + scaleY;
+      var speed = Math.abs(vy);
+      stage.style.filter = speed > 6 ? 'blur(' + Math.min(5, (speed - 6) * 0.12).toFixed(1) + 'px)' : '';
+    };
+    var tick = function () {
+      raf = 0;
+      if (held) return;
+      var home = REST_Y + Math.round((y - REST_Y) / 360) * 360;
+      if (Math.abs(vy) > 2.4) { vy *= 0.975; y += vy; } // still spinning freely
+      else { vy += (home - y) * 0.02; vy *= 0.86; y += vy; } // slowed enough: settle facing front
+      vx += (REST_X - x) * 0.03; vx *= 0.84; x += vx;
+      paint();
+      if (Math.abs(home - y) > 0.02 || Math.abs(vy) > 0.02 || Math.abs(REST_X - x) > 0.02) raf = requestAnimationFrame(tick);
+    };
+    var wake = function () { if (!raf) raf = requestAnimationFrame(tick); };
+    stage.addEventListener('pointerdown', function (e) {
+      held = true; vy = vx = 0; lastX = e.clientX; lastY = e.clientY; lastT = e.timeStamp;
+      stage.classList.add('held');
+      if (stage.setPointerCapture) stage.setPointerCapture(e.pointerId);
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!held) return;
+      var dx = e.clientX - lastX, dy = e.clientY - lastY, dt = Math.max(8, e.timeStamp - lastT);
+      y += dx * 0.7; x = Math.max(-40, Math.min(40, x - dy * 0.35));
+      vy = vy * 0.5 + (dx * 0.7 / dt) * 16 * 0.5 * 1.8; // keeps the flick's speed for the release
+      lastX = e.clientX; lastY = e.clientY; lastT = e.timeStamp;
+      paint();
+    });
+    var letGo = function (e) {
+      if (!held) return;
+      held = false;
+      stage.classList.remove('held');
+      if (e.timeStamp - lastT > 90) vy = 0; // held still before letting go: no throw
+      vy = Math.max(-46, Math.min(46, vy));
+      wake();
+    };
+    stage.addEventListener('pointerup', letGo);
+    stage.addEventListener('pointercancel', letGo);
+    paint();
+    return rows;
+  }
+
   // Phone opening. "Tavor Production" rises letter by letter in the middle of the screen, drops to its line, and the title rises
   // above it letter by letter, together with the film grain and a slow growth. Then it all settles up into its place and the
   // top bar drops in. Just before it lands, the carousel
   // comes straight up from below while spinning through its slides, fast at first, slowing to a stop on the first slide.
-  var root = document.documentElement;
-  var glow = document.querySelector('.flow-glow'), blur = document.getElementById('motion-blur');
-  if (intro && flow && glow && blur && root.classList.contains('intro-run')) {
+  var root = document.documentElement, armSaid = null;
+  var glow = document.querySelector('.flow-glow');
+  if (intro && flow && glow && root.classList.contains('intro-run')) {
     var DROP_AT = 1460, DROP = 380, TITLE_AT = 1500, GROW = 2100, GLIDE_AT = 2200, TOTAL = 3100, RISE_AT = TOTAL - 280, RISE = 800, SPIN = 1700, TURNS = 24;
     var lede = intro.querySelector('.lede'), tag = intro.querySelector('.tagline');
-    var saved = [lede, tag].map(function (el) { return el.innerHTML; });
-    var letters = [];
-    splitLetters(tag, letters);
-    var tagLetters = letters.length;
-    splitLetters(lede, letters);
-    letters.forEach(function (s, i) {
-      s.animate([{ opacity: 0, transform: 'translateY(.9em)' }, { opacity: 1, transform: 'none' }], {
-        duration: 340, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both',
-        delay: i < tagLetters ? 40 + i * 24 : TITLE_AT + (i - tagLetters) * 20
-      });
-    });
+    // the grain is a still speckle layer that fades out, which the phone can do cheaply
+    var speck = document.createElement('span');
+    speck.className = 'speckle';
+    intro.appendChild(speck);
+    speck.animate([{ opacity: 1 }, { opacity: 1, offset: TITLE_AT / GROW }, { opacity: 0 }], { duration: GROW, easing: 'ease-in', fill: 'both' }).onfinish = function () { speck.remove(); };
+    var savedTag = tag.innerHTML, letters = [];
+    var rise = function (c, delay) {
+      letters.push(c);
+      c.animate([{ opacity: 0, transform: 'translateY(.9em)' }, { opacity: 1, transform: 'none' }], { duration: 340, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both', delay: delay });
+    };
+    var tagChars = [];
+    splitLetters(tag, tagChars);
+    tagChars.forEach(function (c, i) { rise(c, 40 + i * 24); });
+    // the title is in 3D from its first letter: each letter rises in all the layers together
+    turnable(true).forEach(function (row) { row.forEach(function (c, i) { rise(c, TITLE_AT + i * 20); }); });
 
     // "Tavor Production" starts out white and glowing, with a soft light right under it, and calms down to its normal look
     var halo = document.createElement('span');
     halo.style.cssText = 'position:absolute;left:50%;top:115%;width:125%;height:260%;transform:translate(-50%,-50%);background:radial-gradient(ellipse closest-side,rgba(255,255,255,.62) 0,rgba(255,255,255,.34) 35%,rgba(255,255,255,.1) 70%,rgba(255,255,255,0) 100%);filter:blur(8px);z-index:-1;pointer-events:none';
-    tag.style.cssText = 'position:relative;color:#fff;text-shadow:0 0 14px rgba(255,255,255,.8),0 0 3px rgba(255,255,255,.9)';
+    tag.style.cssText = 'position:relative;z-index:7;color:#fff;text-shadow:0 0 14px rgba(255,255,255,.8),0 0 3px rgba(255,255,255,.9)';
     tag.insertBefore(halo, tag.firstChild);
     halo.animate([{ opacity: 1, offset: 0 }, { opacity: 1, offset: DROP_AT / GLIDE_AT }, { opacity: 0, offset: 1 }], { duration: GLIDE_AT, fill: 'both' });
 
@@ -231,8 +307,8 @@
     ], { duration: TOTAL, fill: 'both' });
     move.onfinish = function () {
       move.cancel(); drop.cancel();
-      letters.forEach(function (s) { s.getAnimations().forEach(function (a) { a.cancel(); }); });
-      lede.innerHTML = saved[0]; tag.innerHTML = saved[1];
+      letters.forEach(function (c) { c.style.opacity = ''; c.getAnimations().forEach(function (a) { a.cancel(); }); });
+      tag.innerHTML = savedTag;
       tag.style.cssText = 'color:#fff;text-shadow:0 0 14px rgba(255,255,255,.8),0 0 3px rgba(255,255,255,.9);transition:color 1.2s ease,text-shadow 1.2s ease';
       void tag.offsetWidth;
       tag.style.color = tag.style.textShadow = '';
@@ -253,8 +329,6 @@
       var ring = loop ? per : 1;
       flow.classList.add('spin');
       flow.style.scrollSnapType = 'none';
-      flow.style.filter = 'url(#motion)';
-      glow.style.transition = 'opacity 1.6s ease';
       var pose = function (ms) {
         var p = Math.min(1, ms / SPIN), t = Math.min(1, ms / RISE);
         var rise = t * t * t * (t * (6 * t - 15) + 10), v = Math.pow(1 - p, 2); // rise: gentle start, then fast, soft landing. v: spin speed
@@ -263,7 +337,10 @@
         flow.scrollLeft = slides[0].offsetLeft + first + step * (ring + (left % ring));
         flow.style.transform = 'translateY(' + (60 * (1 - rise)).toFixed(2) + 'vh)';
         flow.style.opacity = String(Math.min(1, t * 8));
-        blur.setAttribute('stdDeviation', (10 * v).toFixed(2) + ' ' + (3 * v).toFixed(2));
+        flow.style.filter = v > 0.04 ? 'blur(' + (5 * v).toFixed(1) + 'px)' : '';
+        // the light behind the carousel travels with it
+        glow.style.transform = flow.style.transform;
+        glow.style.opacity = String(rise);
       };
       pose(0);
       root.classList.remove('intro-run');
@@ -273,20 +350,39 @@
         pose(ms);
         if (ms < SPIN) { requestAnimationFrame(frame); return; }
         flow.style.transform = flow.style.filter = flow.style.opacity = flow.style.scrollSnapType = '';
-        blur.setAttribute('stdDeviation', '0 0');
+        glow.style.transform = glow.style.opacity = '';
         settle();
         spinning = false;
         if (current > -1) startClips(slides[current]);
+        if (armSaid) armSaid();
       };
       requestAnimationFrame(frame);
     }, RISE_AT);
   } else {
     root.classList.remove('intro-run', 'intro-nav');
     spinning = false;
+    turnable();
   }
 
   // The statement rises letter by letter from a faint start the first time it scrolls into view.
   var said = $('statement');
+  // On phones the words fill the whole space between the carousel and the About section.
+  var fitSaid = function () {
+    if (!said || !window.matchMedia('(max-width: 720px)').matches) { if (said) said.style.fontSize = said.style.lineHeight = ''; return; }
+    var room = Math.round(innerHeight * 0.78);
+    said.style.lineHeight = '1.25';
+    var size = 46;
+    for (; size > 14; size--) {
+      said.style.fontSize = size + 'px';
+      if (said.scrollWidth <= said.clientWidth + 1 && said.offsetHeight <= room) break;
+    }
+    var lines = Math.round(said.offsetHeight / (size * 1.25));
+    said.style.lineHeight = (room / lines).toFixed(1) + 'px';
+  };
+  fitSaid();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSaid);
+  var lastW = innerWidth;
+  window.addEventListener('resize', function () { if (innerWidth !== lastW) { lastW = innerWidth; fitSaid(); } });
   if (said && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var whole = said.innerHTML, chars = [];
     splitLetters(said, chars);
@@ -299,9 +395,10 @@
           { duration: 800, delay: i * 16, easing: 'cubic-bezier(.45,0,.4,1)', fill: 'both' });
       });
       if (last) last.onfinish = function () { said.innerHTML = whole; };
-    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -35% 0px' });
     chars.forEach(function (s) { s.style.opacity = '.12'; s.style.transform = 'translateY(.8em)'; });
-    seenIt.observe(said);
+    armSaid = function () { seenIt.observe(said); };
+    if (!spinning) armSaid();
   }
 
   var mail = $('mail');
