@@ -12,6 +12,7 @@
   var $ = function (id) { return document.getElementById(id); };
 
   var site = S.site || {};
+  var arrivedAt = location.hash.slice(1);
   var all = S.projects || [];
   var featured = all.filter(function (p) { return p.featured !== false; });
   var topicBySlug = {};
@@ -65,13 +66,6 @@
   $('about-title').innerHTML = hw.length > 1 ? '<span class="fm">' + esc(hw[0]) + '</span> ' + esc(hw.slice(1).join(' ')) : esc(hw[0]);
   $('about-bio').innerHTML = (ab.bio || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
   $('about-meta').innerHTML = [ab.location ? 'Based in ' + esc(ab.location) : ''].filter(Boolean).join('<br><br>');
-  var cta = $('about-cta');
-  var chat = (site.social || []).filter(function (s) { return s.label === 'WhatsApp'; })[0];
-  cta.href = chat ? chat.url : 'mailto:' + (site.email || '');
-  if (chat) { cta.target = '_blank'; cta.rel = 'noopener'; }
-  cta.textContent = (ab.cta || 'Say hello') + ' \u2192';
-
-
   // Phone carousel of the topic covers: swipe sideways; the centred slide plays its topic's loop clips in turn.
   var flow = $('flow');
   if (flow) {
@@ -208,10 +202,11 @@
       title.appendChild(layer);
       rows.push(row);
     }
-    title.setAttribute('role', 'img');
-    title.setAttribute('aria-label', plain);
+    var chat = (site.social || []).filter(function (s) { return s.label === 'WhatsApp'; })[0];
+    title.setAttribute('role', chat ? 'link' : 'img');
+    title.setAttribute('aria-label', chat ? plain + ' — message me on WhatsApp' : plain);
     var scaleY = window.matchMedia('(max-width: 720px)').matches ? ' scaleY(1.42)' : '';
-    var REST_Y = -16, REST_X = 7, y = REST_Y, x = REST_X, vy = 0, vx = 0, held = false, lastX = 0, lastY = 0, lastT = 0, raf = 0;
+    var REST_Y = -16, REST_X = 7, y = REST_Y, x = REST_X, vy = 0, vx = 0, held = false, lastX = 0, lastY = 0, lastT = 0, raf = 0, startX = 0, startY = 0, travel = 0;
     var paint = function () {
       title.style.transform = 'rotateX(' + x.toFixed(2) + 'deg) rotateY(' + y.toFixed(2) + 'deg)' + scaleY;
       var speed = Math.abs(vy);
@@ -229,12 +224,14 @@
     };
     var wake = function () { if (!raf) raf = requestAnimationFrame(tick); };
     stage.addEventListener('pointerdown', function (e) {
+      startX = e.clientX; startY = e.clientY; travel = 0;
       held = true; vy = vx = 0; lastX = e.clientX; lastY = e.clientY; lastT = e.timeStamp;
       stage.classList.add('held');
       if (stage.setPointerCapture) stage.setPointerCapture(e.pointerId);
     });
     stage.addEventListener('pointermove', function (e) {
       if (!held) return;
+      travel = Math.max(travel, Math.abs(e.clientX - startX) + Math.abs(e.clientY - startY));
       var dx = e.clientX - lastX, dy = e.clientY - lastY, dt = Math.max(8, e.timeStamp - lastT);
       y += dx * 0.7; x = Math.max(-40, Math.min(40, x - dy * 0.35));
       vy = vy * 0.5 + (dx * 0.7 / dt) * 16 * 0.5 * 1.8; // keeps the flick's speed for the release
@@ -251,6 +248,11 @@
     };
     stage.addEventListener('pointerup', letGo);
     stage.addEventListener('pointercancel', letGo);
+    // a tap (not a drag) opens a WhatsApp chat
+    if (chat) {
+      stage.style.cursor = 'pointer';
+      stage.addEventListener('click', function () { if (travel < 8) window.open(chat.url, '_blank', 'noopener'); });
+    }
     paint();
     return rows;
   }
@@ -309,6 +311,7 @@
       move.cancel(); drop.cancel();
       letters.forEach(function (c) { c.style.opacity = ''; c.getAnimations().forEach(function (a) { a.cancel(); }); });
       tag.innerHTML = savedTag;
+      document.querySelector('.t3d').classList.add('float'); // the title drifts like the contact icons once it has landed
       tag.style.cssText = 'color:#fff;text-shadow:0 0 14px rgba(255,255,255,.8),0 0 3px rgba(255,255,255,.9);transition:color 1.2s ease,text-shadow 1.2s ease';
       void tag.offsetWidth;
       tag.style.color = tag.style.textShadow = '';
@@ -362,6 +365,7 @@
     root.classList.remove('intro-run', 'intro-nav');
     spinning = false;
     turnable();
+    document.querySelector('.t3d').classList.add('float');
   }
 
   // The statement rises letter by letter from a faint start the first time it scrolls into view.
@@ -401,6 +405,43 @@
     if (!spinning) armSaid();
   }
 
+  // The top-bar links glide down the page instead of jumping, so the section animations play on the way.
+  var gliding = 0;
+  var glideTo = function (id) {
+    var to = id ? document.getElementById(id) : null;
+    if (!to) return false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    var end = Math.max(0, Math.min(max, id === 'top' ? 0 : to.getBoundingClientRect().top + scrollY));
+    var from = scrollY, dist = end - from;
+    if (!dist) return true;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { scrollTo(0, end); return true; }
+    var dur = 1000, t0 = null, mine = ++gliding;
+    var root = document.documentElement;
+    root.style.scrollSnapType = 'none';
+    var step = function (ts) {
+      if (mine !== gliding) return;
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur), k = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      scrollTo(0, from + dist * k);
+      if (p < 1) requestAnimationFrame(step); else root.style.scrollSnapType = '';
+    };
+    requestAnimationFrame(step);
+    return true;
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (glideTo(a.getAttribute('href').slice(1))) e.preventDefault();
+  });
+  // Arriving from another page with #about or #contact: start at the top, then glide down.
+  if (arrivedAt && document.getElementById(arrivedAt)) {
+    history.replaceState(null, '', location.pathname + location.search);
+    scrollTo(0, 0);
+    var go = function () { setTimeout(function () { glideTo(arrivedAt); }, 350); };
+    if (document.readyState === 'complete') go(); else addEventListener('load', go);
+  }
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { addEventListener(ev, function () { gliding++; }, { passive: true }); });
+
   var mail = $('mail');
   mail.href = 'mailto:' + (site.email || '');
   mail.textContent = site.contactLine || site.email || '';
@@ -415,7 +456,7 @@
   };
   var TINT = { whatsapp: '#1f8f4d', instagram: '#b8326b', tiktok: '#1aa3a8', gmail: '#c0392b' };
   var dock = $('social');
-  var places = [{ label: 'Gmail', url: 'mailto:' + (site.email || '') }].concat(site.social || []);
+  var places = (site.social || []).concat([{ label: 'Gmail', url: 'mailto:' + (site.email || '') }]);
   dock.classList.add('dock');
   dock.innerHTML = places.map(function (s) {
     var key = String(s.label).toLowerCase().replace(/[^a-z]/g, '');
