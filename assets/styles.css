@@ -183,9 +183,10 @@ em{font-style:normal}
 .name{left:5%;bottom:30px;font-size:40vw;line-height:.82;flex-wrap:wrap;width:2.5em}
 .g3{margin-left:.7em}
 .cue{display:none}
-.statement{display:flex;align-items:center;padding:8px 6%}
+.statement{display:flex;align-items:center;padding:0 6%}
 .statement .label{padding:0;margin-bottom:24px}
 .statement-text{width:100%;font-size:15px;line-height:2.6;letter-spacing:.16em;text-transform:uppercase}
+.statement-text>span:last-child{display:block}
 .about{display:block;padding:20px 5% 120px}
 .about .label{padding:0;margin-bottom:24px}
 .portrait{width:78%;margin-bottom:40px}

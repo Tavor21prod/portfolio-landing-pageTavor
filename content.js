@@ -27,10 +27,10 @@ window.SITE = {
     "reelUrl": "https://vimeo.com/[your-showreel-id]",
     "statement": [
       {
-        "text": "I shoot, edit and shape content for "
+        "text": "I shoot edit and create content for "
       },
       {
-        "text": "artists, brands and anyone with an idea",
+        "text": "every idea message business brand or artist",
         "italic": true
       },
       {
@@ -58,7 +58,7 @@ window.SITE = {
       "heading": "I'm Tavor",
       "bio": [
         "I shoot, edit and create for artists, brands and anyone with an idea worth showing.",
-        "Music videos, short clips for Instagram and TikTok, promos for businesses, and edits I make just because. Tell me what you have in mind and we'll build it together."
+        "Promos for businesses, short clips for social media, and edits I make just because.\nTell me what you have in mind and we'll build it together."
       ],
       "location": "Herzliya",
       "available": "Music · Sport · Business · Art · Stills",

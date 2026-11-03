@@ -64,7 +64,7 @@
     : '<span class="frame ph mono">' + esc(ab.photoCaption || '[Photo]') + '</span>';
   var hw = String(ab.heading || '').split(' ');
   $('about-title').innerHTML = hw.length > 1 ? '<span class="fm">' + esc(hw[0]) + '</span> ' + esc(hw.slice(1).join(' ')) : esc(hw[0]);
-  $('about-bio').innerHTML = (ab.bio || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+  $('about-bio').innerHTML = (ab.bio || []).map(function (t) { return '<p>' + esc(t).replace(/\n/g, '<br>') + '</p>'; }).join('');
   $('about-meta').innerHTML = [ab.location ? 'Based in ' + esc(ab.location) : ''].filter(Boolean).join('<br><br>');
   // Phone carousel of the topic covers: swipe sideways; the centred slide plays its topic's loop clips in turn.
   var flow = $('flow');
@@ -373,9 +373,17 @@
   // On phones the words fill the whole space between the carousel and the About section.
   var fitSaid = function () {
     if (!said || !window.matchMedia('(max-width: 720px)').matches) { if (said) said.style.fontSize = said.style.lineHeight = ''; return; }
-    var room = Math.round(innerHeight * 0.78);
+    var room = Math.round(innerHeight * 0.9);
     said.style.lineHeight = '1.25';
-    var size = 46;
+    // size the letters so the first line holds "I SHOOT EDIT" edge to edge; the rest of the words wrap after it
+    said.style.fontSize = '100px';
+    var probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+    probe.textContent = 'I SHOOT EDIT';
+    said.appendChild(probe);
+    var wide = probe.getBoundingClientRect().width;
+    said.removeChild(probe);
+    var size = Math.floor(100 * said.clientWidth / wide * 0.985);
     for (; size > 14; size--) {
       said.style.fontSize = size + 'px';
       if (said.scrollWidth <= said.clientWidth + 1 && said.offsetHeight <= room) break;
