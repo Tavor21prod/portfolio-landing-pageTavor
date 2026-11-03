@@ -46,7 +46,7 @@
     var pic = '<img src="' + esc(it.image) + '" alt="' + esc(it.alt) + '"' + (i && !t.carousel ? ' loading="lazy"' : '') + '>';
     if (!it.video) return t.layout === 'grid' ? '<a class="zoom" href="' + esc(it.image) + '" aria-label="View larger: ' + esc(it.alt) + '">' + pic + '</a>' : pic;
     var inner = it.loop
-      ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="none"></video>'
+      ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="metadata"></video>'
       : pic;
     return '<a class="vid" href="' + esc(it.video) + '"' + (it.ratio ? ' data-ratio="' + esc(it.ratio) + '"' : '') + ' target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
       inner + '<span class="play" aria-hidden="true"></span></a>';
@@ -114,6 +114,15 @@
   }
   $('topic-grid').innerHTML = main;
   addFoot();
+  // the contact icons, smaller, under the pictures (Stills has its own Instagram link instead)
+  if (!t.foot && window.makeDock) {
+    var smallDock = document.createElement('nav');
+    smallDock.className = 'dock small';
+    smallDock.setAttribute('aria-label', 'Contact');
+    var under = $('topic-grid').closest('.carousel-wrap') || $('topic-grid');
+    under.parentNode.insertBefore(smallDock, under.nextSibling);
+    window.makeDock(smallDock, S.site || {});
+  }
 
   // Loop clips play while hovered or focused and rewind on leave. On touch screens, which can't hover,
   // they play while they are mostly in view instead.
@@ -144,7 +153,9 @@
       var v;
       if (at0 > -1) { cards[at0].classList.remove('on'); v = cards[at0].querySelector('video'); if (v) stop(v); }
       at0 = best; cards[best].classList.add('on');
-      v = cards[best].querySelector('video'); if (v) play(v);
+      v = cards[best].querySelector('video'); if (v) { v.preload = 'auto'; play(v); }
+      // start fetching the loops on either side now, so a swipe finds them ready
+      [-2, -1, 1, 2].forEach(function (d) { var nv = cards[(best + d + cards.length) % cards.length].querySelector('video'); if (nv && nv.preload !== 'auto') { nv.preload = 'auto'; nv.load(); } });
     };
     var snapOff = function (fn) { strip.style.scrollSnapType = 'none'; fn(); requestAnimationFrame(function () { strip.style.scrollSnapType = ''; settle(); }); };
     var recentre = function () {
