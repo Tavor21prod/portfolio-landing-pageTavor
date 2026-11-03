@@ -116,28 +116,137 @@ window.SITE = {
           "feature": true
         }
       ],
-      "layout": "feature",
+      "layout": "video",
+      "carousel": true,
       "font": "gothic"
     },
     {
       "slug": "stills",
       "title": "Stills",
-      "blurb": "Photography, portraits and still frames.",
+      "layout": "grid",
+      "carousel": true,
+      "foot": { "text": "For more", "name": "Instagram", "href": "https://www.instagram.com/tavor_production", "icon": "instagram" },
+      "blurb": "",
       "items": [
         {
-          "image": "images/horizon.jpg",
-          "alt": "Low sun on a dark sea horizon",
-          "caption": "[Project name]"
+          "image": "images/stills/s19.jpg",
+          "ratio": "1800/1200",
+          "alt": "Singer in a Favre jersey facing a crowd under blue light",
+          "caption": ""
         },
         {
-          "image": "images/fog.jpg",
-          "alt": "Tree trunks fading into fog",
-          "caption": "[Project name]"
+          "image": "images/stills/s04.jpg",
+          "ratio": "1800/1200",
+          "alt": "Two basketball players going up for the tip-off",
+          "caption": ""
         },
         {
-          "image": "images/window.jpg",
-          "alt": "Figure against a window with blinds",
-          "caption": "[Project name]"
+          "image": "images/stills/s02.jpg",
+          "ratio": "1800/1400",
+          "alt": "Smiling young man in a white t-shirt against a pale wall",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s11.jpg",
+          "ratio": "1800/1200",
+          "alt": "Man spraying graffiti on a colourful wall",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s17.jpg",
+          "ratio": "1800/1200",
+          "alt": "Singer in a red and black jacket reaching toward the crowd",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s09.jpg",
+          "ratio": "1800/1200",
+          "alt": "Player in yellow holding the ball by a dark door",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s14.jpg",
+          "ratio": "1800/931",
+          "alt": "Monkey holding a water bottle on a hillside",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s10.jpg",
+          "ratio": "1800/1364",
+          "alt": "Young man in a white shirt by a pool with a pink flamingo float",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s05.jpg",
+          "ratio": "1800/1280",
+          "alt": "Basketball game under way in a school gym",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s13.jpg",
+          "ratio": "1800/1200",
+          "alt": "Woman cooking in a street kitchen",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s18.jpg",
+          "ratio": "1800/1445",
+          "alt": "Singer in a Favre jersey seen from behind, black and white",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s07.jpg",
+          "ratio": "1800/1200",
+          "alt": "Basketball player drinking from a water bottle",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s12.jpg",
+          "ratio": "1800/1200",
+          "alt": "Person playing guitar on a wooden porch among trees",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s03.jpg",
+          "ratio": "1800/1200",
+          "alt": "Man in a prayer shawl reading at a lectern",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s06.jpg",
+          "ratio": "1800/1725",
+          "alt": "Players stretching with their arms raised",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s20.jpg",
+          "ratio": "1800/1200",
+          "alt": "Performer on a dark stage in blue light with phones raised",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s08.jpg",
+          "ratio": "1800/1200",
+          "alt": "Player in a yellow jersey on court with the bench behind him",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s16.jpg",
+          "ratio": "1800/1200",
+          "alt": "Wooden structures by the water seen through leaves",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s15.jpg",
+          "ratio": "1800/1587",
+          "alt": "Figure climbing red steps among trees",
+          "caption": ""
+        },
+        {
+          "image": "images/stills/s01.jpg",
+          "ratio": "1800/1200",
+          "alt": "Soldier in a beret beside an Israeli flag",
+          "caption": ""
         }
       ],
       "font": "mono"
@@ -186,7 +295,7 @@ window.SITE = {
       "title": "Edits",
       "layout": "vertical",
       "carousel": true,
-      "more": { "eyebrow": "More on", "name": "TikTok", "handle": "@tavor_m", "href": "https://www.tiktok.com/@tavor_m", "image": "images/video/edits-tiktok.jpg" },
+      "more": { "eyebrow": "More on", "name": "TikTok", "handle": "@tavor_m", "href": "https://www.tiktok.com/@tavor_m", "icon": "tiktok" },
       "blurb": "",
       "items": [
         {
@@ -282,8 +391,8 @@ window.SITE = {
     {
       "slot": "b",
       "topic": "stills",
-      "image": "images/horizon.jpg",
-      "alt": "Low sun on a dark sea horizon"
+      "image": "images/stills-cover.jpg",
+      "alt": "A performer on a dark stage in blue light, with phones raised toward him"
     },
     {
       "slot": "d",
