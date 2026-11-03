@@ -23,6 +23,7 @@ window.SITE = {
     "tagline": "Tavor Production",
     "years": "2022 — 2026",
     "email": "tavor2005@gmail.com",
+    "contactLine": "Feel free to contact me",
     "reelUrl": "https://vimeo.com/[your-showreel-id]",
     "statement": [
       {
@@ -33,7 +34,7 @@ window.SITE = {
         "italic": true
       },
       {
-        "text": " — and give every brief a point of view."
+        "text": " and give every brief a point of view."
       }
     ],
     "social": [
@@ -150,6 +151,7 @@ window.SITE = {
       "items": [
         {
           "video": "https://youtu.be/PqyONhNPsjY",
+          "ratio": "9/16",
           "image": "images/video/promo-interview.jpg",
           "loop": "videos/loops/promo-interview.mp4",
           "alt": "A woman laughing mid-interview on a basketball court",
