@@ -50,7 +50,7 @@
     var inner = it.loop
       ? pic.replace('<img ', '<img class="rest" ') + '<video class="clip" src="' + esc(it.loop) + '" muted loop playsinline preload="none"></video>'
       : pic;
-    return '<a class="vid" href="' + esc(it.video) + '" target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
+    return '<a class="vid" href="' + esc(it.video) + '"' + (it.ratio ? ' data-ratio="' + esc(it.ratio) + '"' : '') + ' target="_blank" rel="noopener" aria-label="' + esc('Watch ' + (it.caption || it.alt || 'video') + ' on YouTube') + '">' +
       inner + '<span class="play" aria-hidden="true"></span></a>';
   };
 
@@ -141,6 +141,43 @@
     window.addEventListener('load', home);
     home();
   }
+
+  // A video opens in a player on top of this page instead of sending the visitor to YouTube.
+  // (Anything that is not a YouTube link keeps its normal behaviour.)
+  var ytId = function (url) { var m = /(?:youtu\.be\/|youtube\.com\/(?:shorts\/|embed\/|watch\?(?:.*&)?v=))([\w-]{11})/.exec(url); return m && m[1]; };
+  var shut = null;
+  var openPlayer = function (url, ratio, opener) {
+    var id = ytId(url);
+    if (!id) return false;
+    var tall = ratio ? ratio === '9/16' : /\/shorts\//.test(url);
+    var box = document.createElement('div');
+    box.className = 'player';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Video player');
+    box.innerHTML = '<div class="player-frame' + (tall ? ' tall' : '') + '"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1" title="Video" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>' +
+      '<button class="player-close mono" type="button" aria-label="Close video">Close \u2715</button>';
+    document.body.appendChild(box);
+    document.documentElement.classList.add('player-open');
+    var close = box.querySelector('.player-close');
+    shut = function () {
+      box.remove();
+      document.documentElement.classList.remove('player-open');
+      document.removeEventListener('keydown', onKey);
+      shut = null;
+      if (opener && opener.focus) opener.focus();
+    };
+    var onKey = function (e) { if (e.key === 'Escape') shut(); };
+    document.addEventListener('keydown', onKey);
+    box.addEventListener('click', function (e) { if (e.target === box || e.target === close) shut(); });
+    close.focus();
+    return true;
+  };
+  $('topic-grid').addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.vid');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (openPlayer(a.getAttribute('href'), a.getAttribute('data-ratio'), a)) e.preventDefault();
+  });
 
   var n = $('topic-next');
   if (next && next.slug !== t.slug) {
