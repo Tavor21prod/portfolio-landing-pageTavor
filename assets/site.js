@@ -63,6 +63,7 @@
     ? '<span class="frame"><img src="' + esc(ab.photo) + '" alt="' + esc(ab.photoAlt) + '" loading="lazy"></span>'
     : '<span class="frame ph mono">' + esc(ab.photoCaption || '[Photo]') + '</span>';
   var hw = String(ab.heading || '').split(' ');
+  $('said-name').innerHTML = hw.length > 1 ? '<span class="fm">' + esc(hw[0]) + '</span> ' + esc(hw.slice(1).join(' ')) : esc(hw[0]);
   $('about-title').innerHTML = hw.length > 1 ? '<span class="fm">' + esc(hw[0]) + '</span> ' + esc(hw.slice(1).join(' ')) : esc(hw[0]);
   $('about-bio').innerHTML = (ab.bio || []).map(function (t) { return '<p>' + esc(t).replace(/\n/g, '<br>') + '</p>'; }).join('');
   $('about-meta').innerHTML = [ab.location ? 'Based in ' + esc(ab.location) : ''].filter(Boolean).join('<br><br>');
@@ -257,7 +258,7 @@
     return rows;
   }
 
-  // Phone opening. "Tavor Production" rises letter by letter in the middle of the screen, drops to its line, and the title rises
+  // Phone opening. "Visuals Creator" rises letter by letter in the middle of the screen, drops to its line, and the title rises
   // above it letter by letter, together with the film grain and a slow growth. Then it all settles up into its place and the
   // top bar drops in. Just before it lands, the carousel
   // comes straight up from below while spinning through its slides, fast at first, slowing to a stop on the first slide.
@@ -373,7 +374,8 @@
   // On phones the words fill the whole space between the carousel and the About section.
   var fitSaid = function () {
     if (!said || !window.matchMedia('(max-width: 720px)').matches) { if (said) said.style.fontSize = said.style.lineHeight = ''; return; }
-    var room = Math.round(innerHeight * 0.9);
+    var nameEl = $('said-name'), nameH = nameEl ? nameEl.offsetHeight + parseFloat(getComputedStyle(nameEl).marginBottom) : 0;
+    var room = Math.round(innerHeight * 0.9 - nameH);
     said.style.lineHeight = '1.25';
     // size the letters so the first line holds "I SHOOT EDIT" edge to edge; the rest of the words wrap after it
     said.style.fontSize = '100px';
@@ -396,7 +398,8 @@
   var lastW = innerWidth;
   window.addEventListener('resize', function () { if (innerWidth !== lastW) { lastW = innerWidth; fitSaid(); } });
   if (said && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var whole = said.innerHTML, chars = [];
+    var whole = said.innerHTML, chars = [], nameEl = $('said-name'), nameWhole = nameEl ? nameEl.innerHTML : '';
+    if (nameEl) splitLetters(nameEl, chars); // "I'm Tavor" rises first, then the statement
     splitLetters(said, chars);
     var seenIt = new IntersectionObserver(function (es) {
       if (!es[0].isIntersecting) return;
@@ -406,7 +409,7 @@
         last = s.animate([{ opacity: 0.12, transform: 'translateY(.8em)' }, { opacity: 1, transform: 'none' }],
           { duration: 800, delay: i * 16, easing: 'cubic-bezier(.45,0,.4,1)', fill: 'both' });
       });
-      if (last) last.onfinish = function () { said.innerHTML = whole; };
+      if (last) last.onfinish = function () { said.innerHTML = whole; if (nameEl) nameEl.innerHTML = nameWhole; };
     }, { threshold: 0, rootMargin: '0px 0px -35% 0px' });
     chars.forEach(function (s) { s.style.opacity = '.12'; s.style.transform = 'translateY(.8em)'; });
     armSaid = function () { seenIt.observe(said); };
