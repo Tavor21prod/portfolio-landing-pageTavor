@@ -19,8 +19,8 @@ window.SITE = {
     ],
     "location": "Herzliya",
     "brandSuffix": "Production",
-    "lede": "visuals creator",
-    "tagline": "Tavor Production",
+    "lede": "tavor production",
+    "tagline": "Visuals Creator",
     "years": "2022 — 2026",
     "email": "tavor2005@gmail.com",
     "contactLine": "Feel free to contact me",
@@ -30,11 +30,14 @@ window.SITE = {
         "text": "I shoot edit and create content for "
       },
       {
-        "text": "every idea message business brand or artist",
+        "text": "every idea\n message \nbusiness\n brand \nor artist",
         "italic": true
       },
       {
         "text": " and give every brief a point of view."
+      },
+      {
+        "text": "Tell me what you have in mind and we'll build it together."
       }
     ],
     "social": [
@@ -57,14 +60,13 @@ window.SITE = {
       "photoCaption": "[Photo of you]",
       "heading": "I'm Tavor",
       "bio": [
-        "I shoot, edit and create for artists, brands and anyone with an idea worth showing.",
-        "Promos for businesses, short clips for social media, and edits I make just because.\nTell me what you have in mind and we'll build it together."
+        "I shoot, edit and create for artists, brands and anyone with an idea worth showing. Tell me what you have in mind and we'll build it together."
       ],
       "location": "Herzliya",
       "available": "Music · Sport · Business · Art · Stills",
       "cta": "Say hello"
     },
-    "ledeAccent": "creator"
+    "ledeAccent": "production"
   },
   "topics": [
     {
@@ -125,7 +127,12 @@ window.SITE = {
       "title": "Stills",
       "layout": "grid",
       "carousel": true,
-      "foot": { "text": "For more", "name": "Instagram", "href": "https://www.instagram.com/tavor_production", "icon": "instagram" },
+      "foot": {
+        "text": "For more",
+        "name": "Instagram",
+        "href": "https://www.instagram.com/tavor_production",
+        "icon": "instagram"
+      },
       "blurb": "",
       "items": [
         {
@@ -295,7 +302,13 @@ window.SITE = {
       "title": "Edits",
       "layout": "vertical",
       "carousel": true,
-      "more": { "eyebrow": "More on", "name": "TikTok", "handle": "@tavor_m", "href": "https://www.tiktok.com/@tavor_m", "icon": "tiktok" },
+      "more": {
+        "eyebrow": "More on",
+        "name": "TikTok",
+        "handle": "@tavor_m",
+        "href": "https://www.tiktok.com/@tavor_m",
+        "icon": "tiktok"
+      },
       "blurb": "",
       "items": [
         {
@@ -320,7 +333,7 @@ window.SITE = {
       "title": "Social",
       "layout": "vertical",
       "carousel": true,
-      "blurb": "Short, vertical videos made for Instagram and TikTok.",
+      "blurb": "",
       "items": [
         {
           "video": "https://youtu.be/EFBuUVs1IhU",

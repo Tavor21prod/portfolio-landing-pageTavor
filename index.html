@@ -9,10 +9,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&amp;family=Rubik+Mono+One&amp;display=swap">
 <link rel="stylesheet" href="assets/styles.css">
+<script>window.__edit=/[?&]edit(&|$)/.test(location.search)&&/^(localhost|127\.0\.0\.1)$/.test(location.hostname);</script>
 <script src="content.js" defer></script>
 <script src="assets/dock.js" defer></script>
 <script src="assets/site.js" defer></script>
-<script>if(matchMedia("(max-width:720px)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&!location.hash&&!(function(){try{return sessionStorage.getItem("introSeen")}catch(e){}})()){try{sessionStorage.setItem("introSeen","1")}catch(e){}var d=document.documentElement;d.classList.add("intro-run","intro-nav");setTimeout(function(){d.classList.remove("intro-run","intro-nav")},9000)}</script>
+<script>if(window.__edit){var e=document.createElement("script");e.src="assets/edit.js";e.defer=true;document.head.appendChild(e)}</script>
+<script>if(matchMedia("(max-width:720px)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&!location.hash&&!window.__edit&&!(function(){try{var n=performance.getEntriesByType("navigation")[0];return sessionStorage.getItem("introSeen")&&!(n&&n.type==="reload")}catch(e){}})()){try{sessionStorage.setItem("introSeen","1")}catch(e){}var d=document.documentElement;d.classList.add("intro-run","intro-nav");setTimeout(function(){d.classList.remove("intro-run","intro-nav")},9000)}</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="grain-reveal" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="m"/><feComponentTransfer in="m" result="m2"><feFuncA id="reveal-fn" type="linear" slope="14" intercept="-14"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m2" operator="in"/></filter><filter id="rough" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.6" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
@@ -43,6 +45,7 @@
 </section>
 
 <section class="statement" aria-label="Statement">
+<h2 class="said-name" id="said-name"></h2>
 <p class="statement-text" id="statement"></p>
 </section>
 

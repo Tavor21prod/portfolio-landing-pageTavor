@@ -80,7 +80,7 @@ em{font-style:normal}
 .portrait .frame{display:block;aspect-ratio:4/5;overflow:hidden;background:#141414}
 .portrait img{display:block;width:100%;height:100%;object-fit:cover}
 .portrait .ph{display:grid;place-items:center;border:1px dashed var(--line);color:var(--mute)}
-.about-text{grid-column:9/span 4;display:flex;flex-direction:column;gap:28px;padding-top:.4em}
+.about-text{grid-column:9/span 4;display:flex;flex-direction:column;gap:12px;padding-top:.4em}
 .about-name{margin:0;font-family:var(--serif);font-style:normal;font-weight:400;font-size:clamp(40px,4.4vw,76px);line-height:.95;letter-spacing:0}
 .about-name .fm{font-family:var(--sans);font-size:.36em;letter-spacing:.06em;text-transform:uppercase;margin-right:.35em;vertical-align:.45em}
 .about-bio p{margin:0 0 1.2em;font-family:var(--sans);font-size:12px;line-height:1.8}
@@ -169,10 +169,10 @@ em{font-style:normal}
 .slide.on .slide-title{opacity:1}
 .intro{left:0;top:61px;width:100%;height:184px;padding:0 5%;gap:6px;align-items:center;justify-content:center;text-align:center}
 .intro::before{content:"";position:absolute;left:50%;top:50%;width:112%;height:150%;transform:translate(-50%,-52%);background:radial-gradient(ellipse closest-side at 50% 50%,rgba(255,255,255,.34) 0,rgba(255,255,255,.24) 22%,rgba(255,255,255,.13) 48%,rgba(255,255,255,.05) 74%,rgba(255,255,255,0) 100%);filter:blur(14px);z-index:-1;pointer-events:none}
-.lede{font-size:44px;line-height:.78;letter-spacing:-.015em;word-spacing:-.62em;max-width:10.6em;margin:22px 0 26px;transform:scaleY(1.42);filter:url(#rough);color:rgba(243,239,230,.92);text-shadow:0 0 16px rgba(243,239,230,.18)}
-.lede .gothic{display:block}
-.t3d{width:100%}
-.tagline{font-size:11px;letter-spacing:.5em;margin-left:.5em}
+.lede{font-size:58px;line-height:.78;letter-spacing:-.015em;word-spacing:-.62em;max-width:10.6em;margin:22px 0 26px;transform:scaleY(1.42);filter:url(#rough);color:rgba(243,239,230,.92);text-shadow:0 0 16px rgba(243,239,230,.18)}
+.lede .gothic{display:block;font-size:.82em;margin:-.3em 0 0;line-height:.7;translate:4px 0}
+.t3d{width:100%;margin-left:-18px;position:relative;top:-2px}
+.tagline{font-size:13px;letter-spacing:.38em;margin:24px 0 0 .38em;color:#d9d4c7}
 .side{display:none}
 .still .cap{display:none}
 .s-a{left:9%;top:30%;width:82%}
@@ -187,10 +187,10 @@ em{font-style:normal}
 .statement .label{padding:0;margin-bottom:24px}
 .statement-text{width:100%;font-size:15px;line-height:2.6;letter-spacing:.16em;text-transform:uppercase}
 .statement-text>span:last-child{display:block}
-.about{display:block;padding:20px 5% 120px}
+.about{display:flex;flex-direction:column;padding:20px 5% 120px}
 .about .label{padding:0;margin-bottom:24px}
-.portrait{width:78%;margin-bottom:40px}
-.about-text{gap:22px}
+.portrait{width:78%;order:2}
+.about-text{gap:12px;order:1;margin-bottom:36px}
 .work{padding:40px 5% 120px}
 .work-head{margin-bottom:56px;align-items:flex-end}
 .work-title{font-size:88px}
@@ -305,7 +305,7 @@ em{font-style:normal}
 .flow.jump .slide,.flow.jump .slide *{transition:none}
 .flow.spin .slide{opacity:.85;transform:scale(.86);transition:none}
 .intro-nav .nav{opacity:0}
-.intro-nav .statement-text{visibility:hidden}
+.intro-nav .statement-text,.intro-nav .said-name{visibility:hidden}
 .brand,.brand em{font-family:var(--sans);font-weight:400;font-style:normal;text-transform:uppercase;color:#fff}
 .brand{letter-spacing:.5em;gap:.6em;font-size:11px}
 .brand em{font-size:inherit;letter-spacing:inherit}
@@ -387,4 +387,7 @@ em{font-style:normal}
 .dock.small .i3{max-width:72px}
 .dock.small .i3-name{font-size:9px;letter-spacing:.16em;min-height:36px}
 @media (max-width:720px){.dock.small{grid-template-columns:repeat(4,1fr);gap:4px;margin-top:0}.dock.small .i3-name{font-size:8px;letter-spacing:.1em}}
-
+.about-text{display:none}
+.said-name{grid-column:2/span 10;margin:0 0 28px;font-family:var(--serif);font-style:normal;font-weight:400;font-size:clamp(40px,4.4vw,76px);line-height:.95;letter-spacing:0;color:rgba(243,239,230,.95)}
+.said-name .fm{font-family:var(--sans);font-size:.36em;letter-spacing:.06em;text-transform:uppercase;margin-right:.35em;vertical-align:.45em}
+@media (max-width:720px){.statement{flex-direction:column;align-items:stretch;justify-content:center}.said-name{font-size:44px;margin:0 0 14px}}
